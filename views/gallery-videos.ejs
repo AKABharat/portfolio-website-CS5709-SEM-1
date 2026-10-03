@@ -1,13 +1,166 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - AKABharat</title>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <H1>GALLERY VIDEOS PAGE</H1>
-    <%- include('partials/footer') %>
-  </body>
-</html>
+<%- include('partials/header') %>
+
+<div class="w-full px-10 mt-20 mb-20">
+
+  <div class="text-center mb-10">
+    <div class="text-6xl font-bold mb-3">Video Gallery 🎥</div>
+    <p class="text-gray-500 text-lg">
+      Software engineering talks, tutorials, and things worth watching.
+    </p>
+  </div>
+
+  <div class="max-w-4xl mx-auto">
+
+<!-- Main Video -->
+<div class="rounded-2xl overflow-hidden border-2 border-black mb-6">
+  <iframe
+    id="main-player"
+    class="w-full aspect-video"
+    src="https://www.youtube.com/embed/3JluqTojuME"
+    title="Node.js Crash Course"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Video Information -->
+<div class="flex justify-between items-start mb-10">
+
+  <div>
+    <div id="video-title" class="text-2xl font-bold">
+      Node.js Crash Course
+    </div>
+
+    <div id="video-desc" class="text-gray-600 mt-1">
+      A fast, practical introduction to backend development with Node.js.
+    </div>
+  </div>
+
+  <div class="text-right text-gray-500 text-sm whitespace-nowrap ml-6">
+    <div id="video-count">Video 1 of 4</div>
+  </div>
+
+</div>
+
+<!-- Playlist of videos -->
+<div class="space-y-4" id="playlist">
+
+  <!-- video 1 -->
+  <div
+    class="playlist-item flex gap-4 items-center p-3 rounded-xl border-2 border-black cursor-pointer hover:bg-gray-50"
+    data-id="3JluqTojuME"
+    data-title="Node.js Crash Course"
+    data-desc="A fast, practical introduction to backend development with Node.js."
+    data-index="1">
+
+    <div class="bg-black text-white w-10 h-10 flex items-center justify-center rounded-lg font-bold">
+      1
+    </div>
+
+    <div>
+      <div class="font-bold">Node.js Crash Course</div>
+      <div class="text-gray-500 text-sm">Node.js Tutorial</div>
+    </div>
+
+  </div>
+
+
+  <!-- video 2 -->
+  <div
+    class="playlist-item flex gap-4 items-center p-3 rounded-xl border-2 border-black cursor-pointer hover:bg-gray-50"
+    data-id="PkZNo7MFNFg"
+    data-title="JavaScript Fundamentals"
+    data-desc="A practical introduction to JavaScript fundamentals and the core concepts every developer should know."
+    data-index="2">
+
+    <div class="bg-black text-white w-10 h-10 flex items-center justify-center rounded-lg font-bold">
+      2
+    </div>
+
+    <div>
+      <div class="font-bold">JavaScript Fundamentals</div>
+      <div class="text-gray-500 text-sm">JavaScript Tutorial</div>
+    </div>
+
+  </div>
+
+
+  <!-- video 3 -->
+  <div
+    class="playlist-item flex gap-4 items-center p-3 rounded-xl border-2 border-black cursor-pointer hover:bg-gray-50"
+    data-id="7EmboKQH8lM"
+    data-title="Software Architecture Patterns"
+    data-desc="An introduction to software architecture, design patterns, and making better decisions when building applications."
+    data-index="3">
+
+    <div class="bg-black text-white w-10 h-10 flex items-center justify-center rounded-lg font-bold">
+      3
+    </div>
+
+    <div>
+      <div class="font-bold">Software Architecture Patterns</div>
+      <div class="text-gray-500 text-sm">Software Architecture</div>
+    </div>
+
+  </div>
+
+
+  <!-- video 4 -->
+  <div
+    class="playlist-item flex gap-4 items-center p-3 rounded-xl border-2 border-black cursor-pointer hover:bg-gray-50"
+    data-id="ofme2o29ngU"
+    data-title="MongoDB Crash Course"
+    data-desc="Learn the core MongoDB concepts needed to work with databases in modern backend applications."
+    data-index="4">
+
+    <div class="bg-black text-white w-10 h-10 flex items-center justify-center rounded-lg font-bold">
+      4
+    </div>
+
+    <div>
+      <div class="font-bold">MongoDB Crash Course</div>
+      <div class="text-gray-500 text-sm">MongoDB Tutorial</div>
+    </div>
+
+  </div>
+
+</div>
+
+  </div>
+
+</div>
+
+<script>
+
+  const player = document.getElementById('main-player');
+  const title = document.getElementById('video-title');
+  const desc = document.getElementById('video-desc');
+  const count = document.getElementById('video-count');
+
+  const items = document.querySelectorAll('.playlist-item');
+
+  const total = items.length;
+
+
+  items.forEach(item => {
+
+    item.addEventListener('click', () => {
+
+      const videoId = item.dataset.id;
+
+      player.src = `https://www.youtube.com/embed/${videoId}`;
+
+      player.title = item.dataset.title;
+
+      title.innerText = item.dataset.title;
+
+      desc.innerText = item.dataset.desc;
+
+      count.innerText = `Video ${item.dataset.index} of ${total}`;
+
+    });
+
+  });
+
+</script>
+
+<%- include('partials/footer') %>
