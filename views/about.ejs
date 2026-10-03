@@ -1,13 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <H1>ABOUT PAGE</H1>
-    <%- include('partials/footer') %>
-  </body>
-</html>
+<%- include('partials/header') %>
+
+<div class="w-full px-10 mt-20">
+  <div class="text-7xl font-bold mb-10">About Me 🙋‍♂️</div>
+
+  <div class="flex justify-evenly items-center gap-10">
+    <div class="w-1/2">
+      <p class="text-2xl font-light text-gray-700 mb-6">
+        I'm Bharat — a Software Engineer who likes turning messy data and messy problems into things that actually work.
+      </p>
+      <p class="text-xl font-light text-gray-600 mb-6">
+        Right now I'm doing my MSc in Software Engineering at the University of Limerick, Ireland. Before that, I spent my time building things across data analytics, backend development, and the occasional Salesforce rabbit hole.
+      </p>
+      <p class="text-xl font-light text-gray-600">
+        I enjoy figuring out how software is actually used — not just how it's built — and I'm always down to build something small that solves a real problem.
+      </p>
+    </div>
+
+    <div class="w-1/2">
+      <div class="text-[150px] text-center mb-6">🚀</div>
+      <div class="space-y-3">
+        <div class="flex justify-between border-b-2 border-black pb-2">
+          <span class="font-bold">Email</span>
+          <span class="text-gray-600">bharatcode20@gmail.com</span>
+        </div>
+        <div class="flex justify-between border-b-2 border-black pb-2">
+          <span class="font-bold">Location</span>
+          <span class="text-gray-600">Limerick, Ireland</span>
+        </div>
+        <div class="flex justify-between border-b-2 border-black pb-2">
+          <span class="font-bold">GitHub</span>
+          <a href="https://github.com/AKABharat" class="text-gray-600 underline">github.com/AKABharat</a>
+        </div>
+        <div class="flex justify-between border-b-2 border-black pb-2">
+          <span class="font-bold">LinkedIn</span>
+          <a href="https://linkedin.com/in/bharatdoodi" class="text-gray-600 underline">linkedin.com/in/bharatdoodi</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-16">
+    <div class="text-4xl font-bold mb-6">Outside of Code 🎨</div>
+    <div class="flex gap-4">
+      <span class="bg-black text-white px-5 py-2 rounded-2xl border-green-500 border-5">Car Sketching</span>
+      <span class="bg-black text-white px-5 py-2 rounded-2xl border-green-500 border-5">Creative Arts</span>
+      <span class="bg-black text-white px-5 py-2 rounded-2xl border-green-500 border-5">Tech Podcasts</span>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
