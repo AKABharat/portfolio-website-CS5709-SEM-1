@@ -1,13 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - AKABharat</title>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <H1>PROJECTS PAGE</H1>
-    <%- include('partials/footer') %>
-  </body>
-</html>
+<%- include('partials/header') %>
+
+<div class="w-full px-10 mt-20 mb-20">
+  <div class="text-7xl font-bold mb-16">Projects 🛠️</div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <!-- RFM Analysis Dashboard project 1 -->
+    <div
+      class="border-2 border-black rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform"
+    >
+      <div
+        class="w-full h-56 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[100px]"
+      >
+        📊
+      </div>
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+          <div class="text-2xl font-bold">RFM Analysis Dashboard</div>
+          <a
+            href="https://github.com/AKABharat/E-Commerce-Customer-Segmentation-using-RFM-Analysis"
+            target="_blank"
+            class="bg-black text-white text-sm px-3 py-1.5 rounded-lg flex items-center gap-1 hover:-translate-y-0.5 transition-transform whitespace-nowrap"
+          >
+            Code <span>↗</span>
+          </a>
+        </div>
+        <p class="text-gray-600 mb-4">
+          E-commerce customer-based RFM (Recency, Frequency, Monetary) analysis
+          with an interactive dashboard built in Power BI. Performed ETL on raw
+          data to identify valuable and at-risk customers.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Python</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Pandas</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Excel</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Power BI</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Estate Management System project 2 -->
+    <div
+      class="border-2 border-black rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform"
+    >
+      <div
+        class="w-full h-56 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-[100px]"
+      >
+        🏠
+      </div>
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+          <div class="text-2xl font-bold">Real Estate Management</div>
+          <a
+            href="https://github.com/AKABharat/Real-Estate-Management-System"
+            target="_blank"
+            class="bg-black text-white text-sm px-3 py-1.5 rounded-lg flex items-center gap-1 hover:-translate-y-0.5 transition-transform whitespace-nowrap"
+          >
+            Code <span>↗</span>
+          </a>
+        </div>
+        <p class="text-gray-600 mb-4">
+          A Salesforce-based web application for managing and searching real
+          estate properties — property search, user login/signup, email
+          notifications, user dashboard, and property uploads.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Salesforce</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >LWC</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Apex</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >SOQL</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- GetWeather project 3 -->
+    <div
+      class="border-2 border-black rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform"
+    >
+      <div
+        class="w-full h-56 bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-[100px]"
+      >
+        ⛅
+      </div>
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+          <div class="text-2xl font-bold">GetWeather</div>
+          <a
+            href="https://github.com/AKABharat/GetWeather"
+            target="_blank"
+            class="bg-black text-white text-sm px-3 py-1.5 rounded-lg flex items-center gap-1 hover:-translate-y-0.5 transition-transform whitespace-nowrap"
+          >
+            Code <span>↗</span>
+          </a>
+        </div>
+        <p class="text-gray-600 mb-4">
+          A weather search website that displays real-time weather based on city
+          input, pulling live data from a public weather API.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >HTML5</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >CSS</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >JavaScript</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Weather API</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- SnapQuest project 4-->
+    <div
+      class="border-2 border-black rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform"
+    >
+      <div
+        class="w-full h-56 bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center text-[100px]"
+      >
+        📸
+      </div>
+      <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+          <div class="text-2xl font-bold">SnapQuest</div>
+          <a
+            href="https://github.com/AKABharat/SnapQuest"
+            target="_blank"
+            class="bg-black text-white text-sm px-3 py-1.5 rounded-lg flex items-center gap-1 hover:-translate-y-0.5 transition-transform whitespace-nowrap"
+          >
+            Code <span>↗</span>
+          </a>
+        </div>
+        <p class="text-gray-600 mb-4">
+          An image search website that allows users to search and dynamically
+          view images based on input, powered by the Unsplash API.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >JavaScript</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >HTML</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >CSS</span
+          >
+          <span class="bg-black text-white text-xs px-3 py-1 rounded-full"
+            >Unsplash API</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

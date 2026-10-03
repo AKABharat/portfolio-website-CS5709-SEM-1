@@ -1,13 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - AKABharat</title>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <H1>KNOWLEDGE PAGE</H1>
-    <%- include('partials/footer') %>
-  </body>
-</html>
+<%- include('partials/header') %>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(-3deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+  }
+  .brain-float {
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+  }
+</style>
+
+<div class="w-full px-10 mt-20 mb-20">
+
+  <div class="flex justify-between items-center mb-16">
+    <div class="text-7xl font-bold">Professional Knowledge 💼</div>
+    <div class="text-[100px]">
+      <span class="brain-float">🧠</span>
+    </div>
+  </div>
+
+  <!-- My Work Experience -->
+  <div class="space-y-10 mb-16">
+
+    <div class="border-b-2 border-black pb-8">
+      <div class="flex justify-between items-start">
+        <div>
+          <div class="text-3xl font-bold">Software Engineer</div>
+          <div class="text-xl text-gray-600 mt-1">Aranya Consultancy — Gurugram, Haryana</div>
+        </div>
+        <div class="text-lg font-bold text-right">02/2025 - 06/2026</div>
+      </div>
+      <ul class="text-gray-600 text-lg font-light list-disc ml-5 mt-4 space-y-1">
+        <li>Software analysis & consultancy, contributing to data analytics projects</li>
+        <li>Exploring and analyzing large datasets using Python and SQL</li>
+        <li>Transforming raw data into business intelligence dashboards for data-driven decisions</li>
+        <li>Writing SQL functions, procedures, views, indexes, and subqueries</li>
+        <li>Performed ETL operations and built interactive dashboards in Power BI</li>
+      </ul>
+    </div>
+
+    <div class="border-b-2 border-black pb-8">
+      <div class="flex justify-between items-start">
+        <div>
+          <div class="text-3xl font-bold">Associate Software Engineer</div>
+          <div class="text-xl text-gray-600 mt-1">Briskminds Software Solutions — Jaipur, Rajasthan</div>
+        </div>
+        <div class="text-lg font-bold text-right">01/2024 - 02/2025</div>
+      </div>
+      <ul class="text-gray-600 text-lg font-light list-disc ml-5 mt-4 space-y-1">
+        <li>Salesforce Admin & Developer — Apex, Lightning Web Components, Aura Components, Visualforce</li>
+        <li>Contributed to internal and client-facing projects across the Salesforce ecosystem</li>
+        <li>Developed Retail Application features including product catalog and payment page</li>
+      </ul>
+    </div>
+
+    <div class="pb-8">
+      <div class="flex justify-between items-start">
+        <div>
+          <div class="text-3xl font-bold">Frontend Web Developer Intern</div>
+          <div class="text-xl text-gray-600 mt-1">IBM SkillsBuild Platform</div>
+        </div>
+        <div class="text-lg font-bold text-right">06/2023 - 07/2023</div>
+      </div>
+      <ul class="text-gray-600 text-lg font-light list-disc ml-5 mt-4 space-y-1">
+        <li>Trained in front-end technologies — HTML, CSS, JavaScript</li>
+        <li>Built an Amazon website UI clone and submitted it on time</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- My Skills -->
+  <div>
+    <div class="text-4xl font-bold mb-6">Skills 🛠️</div>
+    <div class="flex flex-wrap gap-3">
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Python</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">SQL</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">MySQL</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">JavaScript</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Node.js</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Express.js</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">MongoDB</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Apex</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">LWC</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Pandas</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Numpy</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Power BI</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">Excel</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">DBMS</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">OOPs</span>
+      <span class="bg-black text-white px-4 py-2 rounded-xl border-green-500 border-5">DSA</span>
+    </div>
+  </div>
+
+</div>
+
+<%- include('partials/footer') %>
