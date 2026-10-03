@@ -5,7 +5,7 @@ const { connectDB } = require("./dbConnection");
 connectDB();
 
 app.set("view engine", "ejs");
-
+app.use(express.static("public"));
 const PORT = 8000;
 app.get("/", (req, res) => {
   res.render("index");
