@@ -11,6 +11,9 @@ app.get("/", (req,res)=>{
     res.render("index");
 });
 
+app.get("/about", (req,res)=>{
+    res.render("about");
+});
 
 app.listen(PORT, ()=>{
     console.log("server listening on port: ",PORT);
