@@ -1,27 +1,61 @@
 <%- include('partials/header') %>
 
-<div class="w-full px-10 mt-20">
-  <div class="text-7xl font-bold mb-10">About Me 🙋‍♂️</div>
+<style>
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(-3deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(3deg);
+    }
+  }
+  .rocket-float {
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+  }
+</style>
 
-  <div class="flex justify-evenly items-center gap-10">
-    <div class="w-1/2">
+<div class="w-full px-10 mt-20 mb-20">
+  <div class="flex justify-between">
+    <div class="text-7xl font-bold pt-10">About Me 🙋‍♂️</div>
+    <div class="text-[150px] text-center mb-8">
+      <span class="rocket-float">🚀</span>
+    </div>
+  </div>
+
+  <div class="flex justify-evenly items-center gap-16">
+    <!-- LEFT Side -->
+    <div class="w-3/5">
       <p class="text-2xl font-light text-gray-700 mb-6">
-        I'm Bharat — a Software Engineer who likes turning messy data and messy problems into things that actually work.
+        I'm Bharat — a Software Engineer who likes turning messy data and messy
+        problems into things that actually work.
       </p>
       <p class="text-xl font-light text-gray-600 mb-6">
-        Right now I'm doing my MSc in Software Engineering at the University of Limerick, Ireland. Before that, I spent my time building things across data analytics, backend development, and the occasional Salesforce rabbit hole.
+        Right now I'm doing my MSc in Software Engineering at the University of
+        Limerick, Ireland. Before that, I spent my time building things across
+        data analytics, backend development, and the occasional Salesforce
+        rabbit hole — working with Python, SQL, Apex, and a fair bit of Excel
+        wizardry along the way.
+      </p>
+      <p class="text-xl font-light text-gray-600 mb-6">
+        I enjoy figuring out how software is actually used — not just how it's
+        built. I like digging into why some products click with people and
+        others don't, and I'm always down to build something small that solves a
+        real problem.
       </p>
       <p class="text-xl font-light text-gray-600">
-        I enjoy figuring out how software is actually used — not just how it's built — and I'm always down to build something small that solves a real problem.
+        These days I'm leaning further into AI and full-stack development —
+        learning as I build, and building as I learn.
       </p>
     </div>
 
-    <div class="w-1/2">
-      <div class="text-[150px] text-center mb-6">🚀</div>
-      <div class="space-y-3">
+    <!-- RIGHT Side -->
+    <div class="w-2/5">
+      <div class="space-y-3 mb-10">
         <div class="flex justify-between border-b-2 border-black pb-2">
           <span class="font-bold">Email</span>
-          <span class="text-gray-600">bharatcode20@gmail.com</span>
+          <span class="text-gray-600 text-sm">bharatcode20@gmail</span>
         </div>
         <div class="flex justify-between border-b-2 border-black pb-2">
           <span class="font-bold">Location</span>
@@ -29,22 +63,39 @@
         </div>
         <div class="flex justify-between border-b-2 border-black pb-2">
           <span class="font-bold">GitHub</span>
-          <a href="https://github.com/AKABharat" class="text-gray-600 underline">github.com/AKABharat</a>
+          <a href="https://github.com/AKABharat" class="text-gray-600 underline"
+            >github.com/AKABharat</a
+          >
         </div>
         <div class="flex justify-between border-b-2 border-black pb-2">
           <span class="font-bold">LinkedIn</span>
-          <a href="https://linkedin.com/in/bharatdoodi" class="text-gray-600 underline">linkedin.com/in/bharatdoodi</a>
+          <a href="https://linkedin.com/" class="text-gray-600 underline"
+            >linkedin.com/in/</a
+          >
+        </div>
+        <div class="flex justify-between border-b-2 border-black pb-2">
+          <span class="font-bold">Languages</span>
+          <span class="text-gray-600">English, Hindi</span>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="mt-16">
-    <div class="text-4xl font-bold mb-6">Outside of Code 🎨</div>
-    <div class="flex gap-4">
-      <span class="bg-black text-white px-5 py-2 rounded-2xl border-green-500 border-5">Car Sketching</span>
-      <span class="bg-black text-white px-5 py-2 rounded-2xl border-green-500 border-5">Creative Arts</span>
-      <span class="bg-black text-white px-5 py-2 rounded-2xl border-green-500 border-5">Tech Podcasts</span>
+      <div>
+        <div class="text-4xl font-bold mb-6">Outside of Code 🎨</div>
+        <div class="flex gap-4 flex-col w-full">
+          <span
+            class="bg-black text-white text-center px-5 py-2 rounded-2xl border-green-500 border-5"
+            >Car Sketching</span
+          >
+          <span
+            class="bg-black text-white text-center px-5 py-2 rounded-2xl border-green-500 border-5"
+            >Creative Arts</span
+          >
+          <span
+            class="bg-black text-white text-center px-5 py-2 rounded-2xl border-green-500 border-5"
+            >Tech Podcasts</span
+          >
+        </div>
+      </div>
     </div>
   </div>
 </div>
