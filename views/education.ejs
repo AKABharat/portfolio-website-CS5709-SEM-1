@@ -1,13 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - AKABharat</title>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <H1>EDUCATION PAGE</H1>
-    <%- include('partials/footer') %>
-  </body>
-</html>
+<%- include('partials/header') %>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(-3deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+  }
+  .cap-float {
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+  }
+</style>
+
+<div class="w-full px-10 mt-20 mb-20">
+
+  <div class="flex justify-between items-center mb-16">
+    <div class="text-7xl font-bold">Education 🎓</div>
+    <div class="text-[100px]">
+      <span class="cap-float">📚</span>
+    </div>
+  </div>
+
+  <div class="space-y-10">
+
+    <div class="flex justify-between items-start border-b-2 border-black pb-8">
+      <div class="w-3/4">
+        <div class="text-3xl font-bold">Bachelor of Technology</div>
+        <div class="text-xl text-gray-600 mt-1">Swami Keshvanand Institute of Technology (SKIT), Jaipur</div>
+        <div class="text-lg font-light text-gray-500 mt-2">Computer Science — Artificial Intelligence</div>
+      </div>
+      <div class="w-1/4 text-right">
+        <div class="text-lg font-bold">2020 - 2024</div>
+        <div class="font-bold text-gray-500 mt-2">CGPA 9.54</div>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-start border-b-2 border-black pb-8">
+      <div class="w-3/4">
+        <div class="text-3xl font-bold">Senior Secondary (12th)</div>
+        <div class="text-xl text-gray-600 mt-1">Saint Verona Senior Secondary School, Jaipur</div>
+        <div class="text-lg font-light text-gray-500 mt-2">Physics, Chemistry, Mathematics — RBSE Board</div>
+      </div>
+      <div class="w-1/4 text-right">
+        <div class="text-lg font-bold">2020</div>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-start pb-8">
+      <div class="w-3/4">
+        <div class="text-3xl font-bold">Secondary (10th)</div>
+        <div class="text-xl text-gray-600 mt-1">Maheshwari Public School, Jaipur</div>
+        <div class="text-lg font-light text-gray-500 mt-2">CBSE Board</div>
+      </div>
+      <div class="w-1/4 text-right">
+        <div class="text-lg font-bold">2018</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('partials/footer') %>
