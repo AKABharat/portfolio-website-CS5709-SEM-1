@@ -1,12 +1,31 @@
+require("dotenv").config();
+
 const express = require("express");
+const session = require("express-session");
+const authRoutes = require("./routes/auth");
+const mongoose = require("mongoose");
+
 const app = express();
-
-const { connectDB } = require("./dbConnection");
-connectDB();
-
-app.set("view engine", "ejs");
-app.use(express.static("public"));
 const PORT = 8000;
+app.set("view engine", "ejs");
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Mongodb (Database) Connected"))
+  .catch((err) => console.log("ERROR: ", err));
+
+app.use("/", authRoutes);
+
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -33,6 +52,14 @@ app.get("/gallery/pictures", (req, res) => {
 
 app.get("/gallery/videos", (req, res) => {
   res.render("gallery-videos");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("signup");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 app.listen(PORT, () => {
