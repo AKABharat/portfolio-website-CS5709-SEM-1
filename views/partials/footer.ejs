@@ -1,65 +1,61 @@
-    </main>
+</main>
 
-    <footer class="bg-black text-white mt-45 px-10 py-10">
-      <div class="flex justify-between flex-wrap gap-12">
+  <footer class="bg-black text-white mt-24 px-5 md:px-10 lg:px-12 xl:px-20 py-10">
+    <div class="max-w-7xl mx-auto">
 
-        <div class="w-full md:w-1/3">
+      <div class="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10">
+
+        <div class="col-span-2 md:col-span-1">
           <div class="text-4xl font-bold">AKABharat ⚡</div>
-          <div class="text-gray-400 font-light mt-3 text-lg">
+          <p class="text-gray-400 font-light mt-3 text-lg max-w-sm">
             Software Engineer turning messy data and messy problems into things that actually work.
-          </div>
-          
+          </p>
         </div>
 
-        <!-- Quick links -->
         <div>
           <div class="text-lg font-bold text-green-500 mb-4">Explore</div>
           <div class="flex flex-col gap-2 text-gray-400">
-            <a href="/" class="hover:text-white transition-colors">Home</a>
-            <a href="/about" class="hover:text-white transition-colors">About</a>
-            <a href="/education" class="hover:text-white transition-colors">Education</a>
-            <a href="/professional-knowledge" class="hover:text-white transition-colors">Knowledge</a>
-            <a href="/projects" class="hover:text-white transition-colors">Projects</a>
+            <a href="/" class="hover:text-white">Home</a>
+            <a href="/about" class="hover:text-white">About</a>
+            <a href="/education" class="hover:text-white">Education</a>
+            <a href="/professional-knowledge" class="hover:text-white">Knowledge</a>
+            <a href="/projects" class="hover:text-white">Projects</a>
           </div>
         </div>
 
-        <!-- Some More links -->
         <div>
           <div class="text-lg font-bold text-green-500 mb-4">More</div>
           <div class="flex flex-col gap-2 text-gray-400">
-            <a href="/blog" class="hover:text-white transition-colors">Blog</a>
-            <a href="/messages" class="hover:text-white transition-colors">Messages</a>
-            <a href="/gallery/pictures" class="hover:text-white transition-colors">Pictures</a>
-            <a href="/gallery/videos" class="hover:text-white transition-colors">Videos</a>
+            <a href="/blog" class="hover:text-white">Blog</a>
+            <a href="/gallery/pictures" class="hover:text-white">Pictures</a>
+            <a href="/gallery/videos" class="hover:text-white">Videos</a>
           </div>
         </div>
 
-        <!-- Connect -->
         <div>
           <div class="text-lg font-bold text-green-500 mb-4">Connect</div>
           <div class="flex flex-col gap-3">
-            <a href="https://github.com/AKABharat" class="bg-white text-black px-4 py-2 rounded-xl text-center hover:-translate-y-1 transition-transform">GitHub</a>
-            <a href="mailto:bharatcode20@gmail.com" class="border-2 border-green-500 text-white px-4 py-2 rounded-xl text-center hover:-translate-y-1 transition-transform">Say Hi</a>
+            <a href="https://github.com/AKABharat" target="_blank" rel="noopener noreferrer"
+               class="bg-white text-black px-4 py-2 rounded-xl text-center transition-transform hover:-translate-y-1">GitHub</a>
+            <a href="mailto:bharatcode20@gmail.com"
+               class="border-2 border-green-500 px-4 py-2 rounded-xl text-center transition-transform hover:-translate-y-1">Say Hi</a>
           </div>
         </div>
 
       </div>
 
-      <!-- Tech Stack strip -->
       <div class="flex gap-3 flex-wrap mt-12 pt-8 border-t border-gray-800">
-        <span class="text-gray-500 text-sm">Built with:</span>
-        <span class="text-xs bg-gray-900 text-gray-300 px-3 py-1 rounded-full">Node.js</span>
-        <span class="text-xs bg-gray-900 text-gray-300 px-3 py-1 rounded-full">Express</span>
-        <span class="text-xs bg-gray-900 text-gray-300 px-3 py-1 rounded-full">MongoDB</span>
-        <span class="text-xs bg-gray-900 text-gray-300 px-3 py-1 rounded-full">EJS</span>
-        <span class="text-xs bg-gray-900 text-gray-300 px-3 py-1 rounded-full">Tailwind CSS</span>
+        <span class="text-gray-400 text-sm">Built with:</span>
+        <% ['Node.js', 'Express', 'MongoDB', 'EJS', 'Tailwind CSS'].forEach(t => { %>
+          <span class="text-xs bg-gray-900 text-gray-400 px-3 py-1 rounded-full"><%= t %></span>
+        <% }) %>
       </div>
 
-      <div class="text-sm text-gray-600 mt-8">
-        &copy; 2026 Bharat — built by hand, not generated.
-      </div>
-    </footer>
-        <!-- Crisp Chat Widget -->
+      <div class="text-sm text-gray-400 mt-8">© 2026 Bharat — built by hand, not generated.</div>
+
+    </div>
+  </footer>
+     <!-- Crisp Chat Widget -->
     <script type="text/javascript">
     window.$crisp=[];
     window.CRISP_WEBSITE_ID="ea5cb1a6-5bd0-4775-86b4-529c874b4745";
@@ -71,6 +67,5 @@
       d.getElementsByTagName("head")[0].appendChild(s);
     })();
     </script>
-
-  </body>
+</body>
 </html>

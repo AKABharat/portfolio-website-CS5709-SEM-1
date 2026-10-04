@@ -1,22 +1,94 @@
+<%
+  // Set res.locals.pageTitle / pageDesc in your routes if you want per-page titles.
+  const _title = (typeof pageTitle !== 'undefined' && pageTitle) ? pageTitle + ' | AKABharat' : 'AKABharat';
+  const _desc = (typeof pageDesc !== 'undefined' && pageDesc) ? pageDesc : 'Bharat is a software engineer turning raw data into clear decisions.';
+  const _path = (typeof currentPath !== 'undefined' && currentPath) ? currentPath : '';
+  const nav = [
+    ['/', 'Home'], ['/about', 'About'], ['/education', 'Education'],
+    ['/professional-knowledge', 'Knowledge'], ['/projects', 'Projects'],
+    ['/gallery', 'Gallery'], ['/blog', 'Blogs']
+  ];
+  const isActive = (to) => to === '/' ? _path === '/' : (_path === to || _path.startsWith(to + '/'));
+%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - AKABharat</title>
-    <link rel="stylesheet" href="/css/output.css" />
-  </head>
-  <body class="font-poppins">
-    <div class="sticky top-0 z-50 backdrop-blur-md bg-white/10 border-b-2 border-black/90 flex justify-between py-5 px-10 md:px-35">
-      <a class="font-extrabold" href="/">AKABharat</a>
-      <nav class="flex gap-5">
-        <a class="transition-all duration-200 ease-out hover:font-extrabold" href="/">Home</a>
-        <a class="transition-all duration-200 ease-out hover:font-extrabold" href="/about">About</a>
-        <a class="transition-all duration-200 ease-out hover:font-extrabold" href="/education">Education</a>
-        <a class="transition-all duration-200 ease-out hover:font-extrabold" href="/professional-knowledge">Knowledge</a>
-        <a class="transition-all duration-200 ease-out hover:font-extrabold" href="/projects">Projects</a>
-        <a class="transition-all duration-200 ease-out hover:font-extrabold" href="/gallery">Gallery</a>
-        <a class="transition-all duration-200 ease-out hover:font-extrabold" href="/blog">Blogs</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= _title %></title>
+  <meta name="description" content="<%= _desc %>">
+  <meta property="og:title" content="<%= _title %>">
+  <meta property="og:description" content="<%= _desc %>">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (keep whichever CDN script you already use) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; background: #fff; color: #000; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 2px solid #22c55e; outline-offset: 3px; }
+
+    /* Floating emoji used on About / Education / Knowledge */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+    .float-icon { animation: float 3s ease-in-out infinite; display: inline-block; }
+
+    /* Big page headings (About, Education, Knowledge, Projects, Gallery...) */
+    .page-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.12; overflow-wrap: anywhere; }
+    @media (prefers-reduced-motion: reduce) { .float-icon { animation: none; } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-black">
+
+  <header class="sticky top-0 z-40 border-b-2 border-black/90 bg-white/[0.20] backdrop-blur-md px-5 py-4 md:px-10 lg:px-12 xl:px-20">
+    <div class="mx-auto max-w-7xl flex items-center justify-between gap-5">
+      <a href="/" class="font-extrabold shrink-0 border-b-8 border-green-400 border-solid">AKABharat</a>
+
+      <!-- Desktop nav -->
+      <nav aria-label="Main navigation" class="hidden lg:flex items-center gap-4 xl:gap-5 text-sm xl:text-base">
+        <% nav.forEach(([to, label]) => { %>
+          <a href="<%= to %>" class="transition-all hover:font-extrabold focus-visible:underline <%= isActive(to) ? 'font-extrabold' : '' %>"><%= label %></a>
+        <% }) %>
       </nav>
+
+      <!-- Mobile menu button -->
+      <button id="menu-btn" type="button" class="lg:hidden inline-flex items-center justify-center h-9 w-9 rounded-md hover:bg-gray-100" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
-    <main class="px-10 md:px-35 mt-5">
+
+    <!-- Mobile nav -->
+    <nav id="mobile-nav" aria-label="Mobile navigation" class="hidden lg:hidden mx-auto max-w-7xl grid grid-cols-2 gap-1 pt-5 pb-2">
+      <% nav.forEach(([to, label]) => { %>
+        <a href="<%= to %>" class="block rounded-md px-3 py-2 hover:bg-gray-100 <%= isActive(to) ? 'font-extrabold bg-gray-100' : '' %>"><%= label %></a>
+      <% }) %>
+    </nav>
+  </header>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('menu-btn');
+      const menu = document.getElementById('mobile-nav');
+      const openIcon = document.getElementById('icon-open');
+      const closeIcon = document.getElementById('icon-close');
+      btn.addEventListener('click', () => {
+        const open = menu.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        openIcon.classList.toggle('hidden', open);
+        closeIcon.classList.toggle('hidden', !open);
+      });
+    })();
+  </script>
+
+  <main class="w-full max-w-7xl mx-auto flex-1 px-5 md:px-10 lg:px-12 xl:px-20">

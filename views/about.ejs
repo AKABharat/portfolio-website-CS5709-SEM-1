@@ -1,225 +1,113 @@
-<%- include('partials/header') %>
+<%- include('partials/header', {
+  pageTitle: 'About Me',
+  pageDesc: 'About Bharat, his background, interests and technical skills.',
+  currentPath: '/about'
+}) %>
 
 <%
-  // ---------- Icon helpers ----------
-  // Devicon: coloured tech logos (open source)
-  const dev = (name, variant = 'original') =>
-    `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-${variant}.svg`;
-  // Simple Icons: single-colour brand logos, colour set in the URL
-  const si = (slug, color = 'white') => `https://cdn.simpleicons.org/${slug}/${color}`;
-
-  // ---------- Content ----------
+  // [label, value, optional link]
   const info = [
-    { label: 'Email', value: 'bharatcode20@gmail.com' },
-    { label: 'Location', value: 'Limerick, Ireland' },
-    { label: 'GitHub', value: 'github.com/AKABharat', href: 'https://github.com/AKABharat' },
-    { label: 'LinkedIn', value: 'linkedin.com/in/bharatdoodi', href: 'https://linkedin.com/in/bharatdoodi' },
-    { label: 'Languages', value: 'English, Hindi' }
+    ['Email', 'bharatcode20@gmail.com', 'mailto:bharatcode20@gmail.com'],
+    ['Location', 'Limerick, Ireland'],
+    ['GitHub', 'github.com/AKABharat', 'https://github.com/AKABharat'],
+    ['LinkedIn', 'linkedin.com/in/bharatdoodi', 'https://linkedin.com/in/bharatdoodi'],
+    ['Languages', 'English, Hindi']
   ];
 
   const hobbies = ['🚗 Car Sketching', '🎨 Creative Arts', '🎧 Tech Podcasts'];
 
-  // icon: a URL (shows an image) or an emoji (shows text)
-  // dark: true = black text (for light backgrounds)
-  // invert: true = turn a dark logo white
   const skillGroups = [
-    {
-      title: '💻 Languages',
-      skills: [
-        { name: 'C', icon: dev('c'), bg: '#0569a8' },
-        { name: 'C++', icon: dev('cplusplus'), bg: '#07558c' },
-        { name: 'Python', icon: dev('python'), bg: '#3d7fb5' },
-        { name: 'JavaScript', icon: dev('javascript'), bg: '#f7df1e', dark: true },
-        { name: 'SQL', icon: '🗃️', bg: '#416f91' },
-        { name: 'Apex', icon: si('salesforce'), bg: '#09a4d8' }
-      ]
-    },
-    {
-      title: '🌐 Web Development',
-      skills: [
-        { name: 'HTML5', icon: dev('html5'), bg: '#f06529' },
-        { name: 'CSS3', icon: dev('css3'), bg: '#1572b6' },
-        { name: 'Node.js', icon: dev('nodejs'), bg: '#43853d' },
-        { name: 'Express.js', icon: dev('express'), bg: '#000000', invert: true },
-        { name: 'EJS', icon: si('ejs'), bg: '#a91e50' },
-        { name: 'React', icon: dev('react'), bg: '#61dafb', dark: true },
-        { name: 'REST API', icon: '🔌', bg: '#ff6840' }
-      ]
-    },
-    {
-      title: '🗄️ Databases',
-      skills: [
-        { name: 'MySQL', icon: dev('mysql'), bg: '#416f91' },
-        { name: 'MongoDB', icon: dev('mongodb'), bg: '#43a047' }
-      ]
-    },
-    {
-      title: '☁️ Salesforce',
-      skills: [
-        { name: 'Salesforce', icon: si('salesforce'), bg: '#09a4d8' },
-        { name: 'SF Admin', icon: '🛡️', bg: '#09a4d8' },
-        { name: 'Apex Dev', icon: '⚡', bg: '#09a4d8' }
-      ]
-    },
-    {
-      title: '📊 Data & Analysis',
-      skills: [
-        { name: 'Pandas', icon: dev('pandas'), bg: '#30178f' },
-        { name: 'NumPy', icon: dev('numpy'), bg: '#073f51' },
-        { name: 'Matplotlib', icon: dev('matplotlib'), bg: '#3977a9' },
-        { name: 'Seaborn', icon: '📈', bg: '#526fa8' },
-        { name: 'Power BI', icon: si('powerbi', 'black'), bg: '#f2c811', dark: true },
-        { name: 'Excel', icon: si('microsoftexcel'), bg: '#217346' }
-      ]
-    },
-    {
-      title: '🧰 Tools & Concepts',
-      skills: [
-        { name: 'Postman', icon: dev('postman'), bg: '#ff6b3d' },
-        { name: 'VS Code', icon: dev('vscode'), bg: '#087acc' },
-        { name: 'Git', icon: dev('git'), bg: '#f05032' },
-        { name: 'OOP', icon: '🧩', bg: '#ff4f1f' },
-        { name: 'DSA', icon: '🌳', bg: '#8e2de2' },
-        { name: 'Tkinter', icon: '🖼️', bg: '#416f91' }
-      ]
-    }
+    {"title":"💻 Languages","skills":["C","C++","Python","JavaScript","SQL","Apex"]},
+    {"title":"🌐 Web Development","skills":["HTML5","CSS3","Node.js","Express.js","EJS","React","REST API"]},
+    {"title":"🗄️ Databases","skills":["MySQL","MongoDB"]},
+    {"title":"☁️ Salesforce","skills":["Salesforce","SF Admin","Apex Dev"]},
+    {"title":"📊 Data & Analysis","skills":["Pandas","NumPy","Matplotlib","Seaborn","Power BI","Excel"]},
+    {"title":"🧰 Tools & Concepts","skills":["Postman","VS Code","Git","OOP","DSA","Tkinter"]}
+  ];
+
+  // Chip colours rotate through 6 tones inside each group
+  const tones = [
+    'bg-sky-700 text-white',
+    'bg-cyan-700 text-white',
+    'bg-emerald-600 text-white',
+    'bg-amber-500 text-black',
+    'bg-red-800 text-white',
+    'bg-purple-700 text-white'
   ];
 %>
 
-<style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(-3deg); }
-    50% { transform: translateY(-12px) rotate(3deg); }
-  }
+<div class="w-full py-12 sm:py-20">
 
-  .rocket-float {
-    animation: float 3s ease-in-out infinite;
-    display: inline-block;
-  }
-
-  .skill-card {
-    transition: transform 0.2s ease;
-  }
-
-  .skill-card:hover {
-    transform: translateY(-3px);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .rocket-float,
-    .skill-card {
-      animation: none;
-      transition: none;
-    }
-  }
-</style>
-
-<div class="w-full px-10 mt-12 mb-20">
-
-  <!-- Page title -->
-  <div class="flex justify-between items-center mb-12">
-    <div class="text-6xl md:text-7xl font-bold">About Me 🙋‍♂️</div>
-    <div class="text-8xl leading-none">
-      <span class="rocket-float">🚀</span>
-    </div>
+  <!-- Title -->
+  <div class="flex justify-between items-center mb-12 gap-4">
+    <h1 class="page-title">About Me 🙋‍♂️</h1>
+    <span aria-hidden="true" class="text-6xl md:text-8xl float-icon">🚀</span>
   </div>
 
   <!-- Intro + Quick info -->
   <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
 
-    <!-- LEFT -->
-    <div class="w-full lg:w-3/5">
-      <p class="text-2xl font-light text-gray-700 mb-6">
-        I'm Bharat — a Software Engineer who likes turning messy data and messy
-        problems into things that actually work.
+    <!-- Left -->
+    <div class="w-full lg:w-3/5 text-xl font-light text-gray-600 space-y-6">
+      <p class="text-2xl text-black/75">
+        I'm Bharat — a Software Engineer who likes turning messy data and messy problems into things that actually work.
       </p>
-
-      <p class="text-xl font-light text-gray-600 mb-6">
-        Right now I'm doing my MSc in Software Engineering at the University of
-        Limerick, Ireland. Before that, I spent my time building things across
-        data analytics, backend development, and the occasional Salesforce
-        rabbit hole — working with Python, SQL, Apex, and a fair bit of Excel
-        wizardry along the way.
+      <p>
+        Right now I'm doing my MSc in Software Engineering at the University of Limerick, Ireland. Before that, I spent my time building things across data analytics, backend development, and the occasional Salesforce rabbit hole — working with Python, SQL, Apex, and a fair bit of Excel wizardry along the way.
       </p>
-
-      <p class="text-xl font-light text-gray-600 mb-6">
-        I enjoy figuring out how software is actually used — not just how it's
-        built. I like digging into why some products click with people and
-        others don't, and I'm always down to build something small that solves a
-        real problem.
+      <p>
+        I enjoy figuring out how software is actually used — not just how it's built. I like digging into why some products click with people and others don't, and I'm always down to build something small that solves a real problem.
       </p>
-
-      <p class="text-xl font-light text-gray-600">
-        These days I'm leaning further into AI and full-stack development —
-        learning as I build, and building as I learn.
+      <p>
+        These days I'm leaning further into AI and full-stack development — learning as I build, and building as I learn.
       </p>
     </div>
 
-    <!-- RIGHT -->
+    <!-- Right -->
     <div class="w-full lg:w-2/5">
-
-      <div class="text-4xl font-bold mb-6">Quick Info</div>
+      <h2 class="text-4xl font-bold mb-6">Quick Info</h2>
 
       <div class="space-y-3 mb-10">
-        <% info.forEach(row => { %>
+        <% info.forEach(([label, value, href]) => { %>
           <div class="flex justify-between border-b-2 border-black pb-2 gap-5">
-            <span class="font-bold"><%= row.label %></span>
-            <% if (row.href) { %>
-              <a href="<%= row.href %>" target="_blank" rel="noopener noreferrer"
-                 class="text-gray-600 underline text-right"><%= row.value %></a>
+            <strong><%= label %></strong>
+            <% if (href) { %>
+              <a href="<%= href %>" <% if (href.startsWith('http')) { %>target="_blank"<% } %> rel="noopener noreferrer"
+                 class="text-gray-600 underline text-right break-all"><%= value %></a>
             <% } else { %>
-              <span class="text-gray-600 text-right break-all"><%= row.value %></span>
+              <span class="text-gray-600 text-right break-all"><%= value %></span>
             <% } %>
           </div>
         <% }) %>
       </div>
 
-      <div class="text-4xl font-bold mb-6">Outside of Code 🎨</div>
-
+      <h2 class="text-4xl font-bold mb-6">Outside of Code 🎨</h2>
       <div class="flex flex-col gap-3">
-        <% hobbies.forEach(hobby => { %>
-          <span class="bg-black text-white text-center px-5 py-2 rounded-2xl border-2 border-green-500">
-            <%= hobby %>
-          </span>
+        <% hobbies.forEach(h => { %>
+          <span class="bg-black text-white text-center px-5 py-2 rounded-2xl border-2 border-green-500"><%= h %></span>
         <% }) %>
       </div>
-
     </div>
+
   </div>
 
   <!-- Skills -->
-  <div class="mt-20">
-
-    <div class="text-5xl font-bold mb-10">Skills ⚙️</div>
+  <section class="mt-20">
+    <h2 class="text-5xl font-bold mb-10">Skills ⚙️</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
       <% skillGroups.forEach(group => { %>
         <div>
-          <div class="text-2xl font-bold mb-4 pb-2 border-b-2 border-black">
-            <%= group.title %>
-          </div>
-
+          <h3 class="text-2xl font-bold mb-4 pb-2 border-b-2 border-black"><%= group.title %></h3>
           <div class="flex flex-wrap gap-2">
-            <% group.skills.forEach(skill => { %>
-              <div class="skill-card inline-flex items-center gap-2 px-3 py-2 rounded-md <%= skill.dark ? 'text-black' : 'text-white' %>"
-                   style="background-color: <%= skill.bg %>;">
-                <% if (skill.icon.startsWith('http')) { %>
-                  <img src="<%= skill.icon %>"
-                       alt=""
-                       class="w-5 h-5 <%= skill.invert ? 'brightness-0 invert' : '' %>"
-                       onerror="this.style.display='none'">
-                <% } else { %>
-                  <span class="text-base leading-none"><%= skill.icon %></span>
-                <% } %>
-                <span class="font-bold tracking-widest text-sm uppercase"><%= skill.name %></span>
-              </div>
+            <% group.skills.forEach((skill, i) => { %>
+              <span class="inline-flex items-center px-3 py-2 rounded-md font-bold text-sm uppercase transition-transform hover:-translate-y-[3px] motion-reduce:transition-none motion-reduce:hover:transform-none <%= tones[i % 6] %>"><%= skill %></span>
             <% }) %>
           </div>
         </div>
       <% }) %>
     </div>
-
-  </div>
+  </section>
 
 </div>
 

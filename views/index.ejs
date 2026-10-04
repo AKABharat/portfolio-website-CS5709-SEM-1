@@ -1,38 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - AKABharat</title>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <div class="flex justify-evenly items-center w-full h-120 mt-20">
-        
-      <div class="w-1/2   font-bold border-r-0  text-7xl ">
-          <div class="mb-10">Hi! I'm Bharat⚡</div>
-          <div class="text-gray-600">I turn raw data into clear decisions.</div>
-          <div class="text-2xl mt-8 font-light space-y-2">
-            <div>Software Engineer | MSc Software Engineering</div>
-            <div>Application & Software Developer</div>
-          </div>
-          <div class="flex gap-3 mt-6">
-  <a href="https://github.com/AKABharat" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl hover:-translate-y-1 transition-transform text-2xl">
-    <img src="/images/github-logo.png" alt="" srcset="">
-  </a>
-  <a href="https://linkedin.com" target="_blank" class="w-20 h-12 flex items-center justify-center rounded-xl hover:-translate-y-1 transition-transform text-2xl">
-  <img src="/images/linkedin-logo.png" alt="LinkedIn">
-</a>
-  <a href="mailto:bharatcode20@gmail.com" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-xl hover:-translate-y-1 transition-transform text-2xl">
-    <img src="/images/mail-logo.png" alt="" srcset="">
-  </a>
+<%- include('partials/header') %>
 
-</div>
-        </div>
+<section
+  class="min-h-[min(680px,80vh)] flex flex-col lg:flex-row justify-between items-center gap-10 py-12 md:py-20"
+>
+  <!-- Left -->
+  <div class="w-full lg:w-1/2 font-bold">
+    <h1 class="text-5xl md:text-6xl xl:text-7xl mb-8 leading-tight">
+      Hi! I'm Bharat⚡
+    </h1>
 
-        <div  class="w-1/2 text-center">
-          <div class="text-[300px]">🧑‍💻</div>
-          <div><a href="/about" class=" bg-black text-white backdrop-blur-md p-10 pt-2.5 cursor-pointer pb-2 rounded-2xl border-green-500 border-5">About me <span class="text-3xl">⎇</span></a></div>
-        </div>
+    <div class="text-4xl md:text-5xl xl:text-7xl text-gray-600 leading-tight">
+      I turn raw data into clear decisions.
     </div>
-    <%- include('partials/footer') %>
+
+    <div class="text-lg md:text-2xl mt-8 font-light space-y-2">
+      <div>Software Engineer | MSc Software Engineering</div>
+      <div>Application &amp; Software Developer</div>
+    </div>
+
+    <!-- Social icons: make sure these 3 images exist in /public/images -->
+    <div class="flex items-center gap-3 mt-6">
+      <a
+        href="https://github.com/AKABharat"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        class="w-12 h-12 flex items-center transition-transform hover:-translate-y-1"
+      >
+        <img
+          src="/images/github-logo.png"
+          alt=""
+          class="max-h-12 object-contain"
+        />
+      </a>
+      <a
+        href="https://linkedin.com/in/bharatdoodi"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="w-12 h-12 flex items-center transition-transform hover:-translate-y-1"
+      >
+        <img
+          src="/images/linkedin-logo.png"
+          alt=""
+          class="max-h-12 object-contain"
+        />
+      </a>
+      <a
+        href="mailto:bharatcode20@gmail.com"
+        aria-label="Email Bharat"
+        class="w-12 h-12 flex items-center transition-transform hover:-translate-y-1"
+      >
+        <img
+          src="/images/mail-logo.png"
+          alt=""
+          class="max-h-12 object-contain"
+        />
+      </a>
+    </div>
+  </div>
+
+  <!-- Right -->
+  <div class="w-full lg:w-1/2 text-center">
+    <div
+      aria-hidden="true"
+      class="text-[150px] sm:text-[220px] xl:text-[300px] leading-none mb-10"
+    >
+      🧑‍💻
+    </div>
+    <a
+      href="/about"
+      class="inline-flex items-center gap-3 bg-black text-white px-8 py-3 rounded-2xl border-[5px] border-green-500 font-medium"
+    >
+      About me <span class="text-3xl">⎇</span>
+    </a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
