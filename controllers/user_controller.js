@@ -10,10 +10,11 @@ const signupCreationHandle = async (req, res) => {
   try {
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new userModel({ username, password: hashedPassword });
     await newUser.save();
     res.redirect("/login");
   } catch (err) {
+    console.log("SIGNUP ERROR:", err);
     res.render("signup", { error: "Username already taken or invalid." });
   }
 };
@@ -27,29 +28,32 @@ const loginPageHandle = async (req, res) => {
 const loginCreationHandle = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await findOne({ username });
-    if (!user) res.render("login", { error: "Invalid username or password." });
+    const user = await userModel.findOne({ username });
+    if (!user) {
+      return res.render("login", { error: "Invalid username or password." });
+    }
 
-    const passwordMatch = await bcrypt(password, user.password);
-    if (!passwordMatch)
-      res.render("login", {
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.render("login", {
         error: "Something went wrong. Please try again.",
       });
-
+    }
     req.session.userId = user._id;
     req.session.username = user.username;
     res.redirect("/");
   } catch (err) {
+    console.log("ERROR: ", err);
     res.render("login", { error: "Something went wrong. Please try again." });
   }
 };
 
 // logout
-const logoutHandle = async(req,res)=>{
-    req.session.destroy(()=>{
-        res.redirect("/");
-    });
-}
+const logoutHandle = async (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/");
+  });
+};
 
 module.exports = {
   signupPageHandle,

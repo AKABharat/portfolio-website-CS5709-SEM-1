@@ -1,52 +1,44 @@
-<%- include('partials/header') %>
+<!-- Filter buttons -->
+<div class="flex justify-center gap-3 flex-wrap mb-10">
+  <button class="filter-btn bg-black text-white px-5 py-2 rounded-full" data-filter="all">All</button>
+  <button class="filter-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full" data-filter="uni">University</button>
+  <button class="filter-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full" data-filter="work">Work</button>
+  <button class="filter-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full" data-filter="personal">Personal</button>
+</div>
 
-<div class="w-full px-10 mt-20 mb-20">
+<!-- Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6" id="gallery-grid">
 
-  <div class="text-center mb-10">
-    <div class="text-6xl font-bold mb-3">Gallery 📸</div>
-    <p class="text-gray-500 text-lg">A showcase of moments, projects, and places.</p>
+  <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="uni" data-caption="First week exploring the University of Limerick campus.">
+    <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">UL Campus</span>
+    <img src="https://www.educationinireland.com/resource/image/182326/landscape_ratio16x9/880/495/b9aada4a8025d69fc059fd179e4d8b9e/48750FAED957D365458521961827D89E/university-of-limerick-ul-.jpg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="UL Campus">
   </div>
 
-  <div class="flex justify-center gap-3 flex-wrap mb-10">
-    <button class="filter-btn bg-black text-white px-5 py-2 rounded-full" data-filter="all">All</button>
-    <button class="filter-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full" data-filter="uni">University</button>
-    <button class="filter-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full" data-filter="work">Work</button>
-    <button class="filter-btn bg-gray-200 text-gray-700 px-5 py-2 rounded-full" data-filter="personal">Personal</button>
+  <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="work" data-caption="Working on data analytics projects at Aranya Consultancy.">
+    <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Aranya Consultancy</span>
+    <img src="https://www.dlf.in/offices/all-images/property-imgs/property_image_69affea7bb9c8.jpg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Work">
   </div>
 
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-6" id="gallery-grid">
-
-    <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="uni" data-caption="First week exploring the University of Limerick campus.">
-      <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">UL Campus</span>
-      <img src="https://www.educationinireland.com/resource/image/182326/landscape_ratio16x9/880/495/b9aada4a8025d69fc059fd179e4d8b9e/48750FAED957D365458521961827D89E/university-of-limerick-ul-.jpg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="UL Campus">
-    </div>
-
-    <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="work" data-caption="Working on data analytics projects at Aranya Consultancy.">
-      <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Aranya Consultancy</span>
-      <img src="https://www.dlf.in/offices/all-images/property-imgs/property_image_69affea7bb9c8.jpg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Work">
-    </div>
-
-    <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="personal" data-caption="One of my car sketches — a hobby I keep coming back to.">
-      <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Car Sketching</span>
-      <img src="https://assets6.domestika.org/course-images/000/051/426/51426-big.jpeg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Sketching">
-    </div>
-
-    <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="uni" data-caption="Working through a lab session during CS5741.">
-      <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">CS5741 Lab</span>
-      <img src="https://scontent-dub4-1.xx.fbcdn.net/v/t39.30808-6/219155385_4035935789793094_2692075246558970538_n.png?stp=dst-jpg_tt6&cstp=mx800x544&ctp=p180x540&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=iKe1WUvAJyoQ7kNvwE6YNO8&_nc_oc=Adr3e3fizUTkChXZSaK8_cVVqUFFbGTpytz9jHLF6txRshRMrxcsHMNyi0ZWAiSlEgc&_nc_zt=23&_nc_ht=scontent-dub4-1.xx&_nc_gid=4uYzZ99z3LisYZmCZOv8ew&_nc_ss=7a289&oh=00_AQPZq7y2leyyo7qr-IlKgNWQw3HSBp7IuQDA9wCE1ysqGg&oe=6AC7639C" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Lab">
-    </div>
-
-    <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="work" data-caption="Hands-on with Salesforce development at Briskminds.">
-      <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Briskminds</span>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvkOo_42kdZwAGAaXDrBn33MRe_XL8U5sPaIWAyaeb_XfoH_SvlUIb6TU&s=10" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Briskminds">
-    </div>
-
-    <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="personal" data-caption="Exploring Limerick on a weekend off.">
-      <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Limerick</span>
-      <img src="https://i.guim.co.uk/img/media/392bd570c80774e8815804d19c98a6d07e3177cd/174_0_5116_3070/master/5116.jpg?width=1900&dpr=2&s=none&crop=none" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Limerick">
-    </div>
-
+  <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="personal" data-caption="One of my car sketches — a hobby I keep coming back to.">
+    <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Car Sketching</span>
+    <img src="https://assets6.domestika.org/course-images/000/051/426/51426-big.jpeg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Sketching">
   </div>
+
+  <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="uni" data-caption="Working through a lab session during CS5741.">
+    <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">CS5741 Lab</span>
+    <img src="https://scontent-dub4-1.xx.fbcdn.net/v/t39.30808-6/219155385_4035935789793094_2692075246558970538_n.png?stp=dst-jpg_tt6&cstp=mx800x544&ctp=p180x540&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=iKe1WUvAJyoQ7kNvwE6YNO8&_nc_oc=Adr3e3fizUTkChXZSaK8_cVVqUFFbGTpytz9jHLF6txRshRMrxcsHMNyi0ZWAiSlEgc&_nc_zt=23&_nc_ht=scontent-dub4-1.xx&_nc_gid=4uYzZ99z3LisYZmCZOv8ew&_nc_ss=7a289&oh=00_AQPZq7y2leyyo7qr-IlKgNWQw3HSBp7IuQDA9wCE1ysqGg&oe=6AC7639C" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Lab">
+  </div>
+
+  <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="work" data-caption="Hands-on with Salesforce development at Briskminds.">
+    <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Briskminds</span>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvkOo_42kdZwAGAaXDrBn33MRe_XL8U5sPaIWAyaeb_XfoH_SvlUIb6TU&s=10" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Briskminds">
+  </div>
+
+  <div class="gallery-item overflow-hidden rounded-2xl border-2 border-black relative cursor-pointer group" data-category="personal" data-caption="Exploring Limerick on a weekend off.">
+    <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10">Limerick</span>
+    <img src="https://i.guim.co.uk/img/media/392bd570c80774e8815804d19c98a6d07e3177cd/174_0_5116_3070/master/5116.jpg?width=1900&dpr=2&s=none&crop=none" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" alt="Limerick">
+  </div>
+
 </div>
 
 <!-- Lightbox -->
@@ -62,57 +54,52 @@
 </div>
 
 <script>
-  // Filtering
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const items = document.querySelectorAll('.gallery-item');
+  (function () {
+    // Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.replace('bg-black', 'bg-gray-200'));
-      filterBtns.forEach(b => b.classList.replace('text-white', 'text-gray-700'));
-      btn.classList.replace('bg-gray-200', 'bg-black');
-      btn.classList.replace('text-gray-700', 'text-white');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-black', 'text-white');
+          b.classList.add('bg-gray-200', 'text-gray-700');
+        });
+        btn.classList.remove('bg-gray-200', 'text-gray-700');
+        btn.classList.add('bg-black', 'text-white');
 
-      const filter = btn.dataset.filter;
-      items.forEach(item => {
-        if (filter === 'all' || item.dataset.category === filter) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
+        const filter = btn.dataset.filter;
+        galleryItems.forEach(item => {
+          item.style.display =
+            (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+        });
       });
     });
-  });
 
-  // Lightbox
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxTag = document.getElementById('lightbox-tag');
-  const lightboxCaption = document.getElementById('lightbox-caption');
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTag = document.getElementById('lightbox-tag');
+    const lightboxCaption = document.getElementById('lightbox-caption');
 
-  items.forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const tag = item.querySelector('span').innerText;
-      lightboxImg.src = img.src;
-      lightboxTag.innerText = tag;
-      lightboxCaption.innerText = item.dataset.caption;
-      lightbox.classList.remove('hidden');
-      lightbox.classList.add('flex');
-    });
-  });
-
-  document.getElementById('lightbox-close').addEventListener('click', () => {
-    lightbox.classList.add('hidden');
-    lightbox.classList.remove('flex');
-  });
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
+    function closeLightbox() {
       lightbox.classList.add('hidden');
       lightbox.classList.remove('flex');
     }
-  });
-</script>
 
-<%- include('partials/footer') %>
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.querySelector('img').src;
+        lightboxTag.innerText = item.querySelector('span').innerText;
+        lightboxCaption.innerText = item.dataset.caption;
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+      });
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  })();
+</script>

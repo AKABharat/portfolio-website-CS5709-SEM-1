@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
+const blogRoutes = require("./routes/blog");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -25,6 +26,7 @@ mongoose
   .catch((err) => console.log("ERROR: ", err));
 
 app.use("/", authRoutes);
+app.use("/", blogRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -46,12 +48,8 @@ app.get("/projects", (req, res) => {
   res.render("projects");
 });
 
-app.get("/gallery/pictures", (req, res) => {
-  res.render("gallery-pictures");
-});
-
-app.get("/gallery/videos", (req, res) => {
-  res.render("gallery-videos");
+app.get("/gallery", (req, res) => {
+  res.render("gallery");
 });
 
 app.get("/signup", (req, res) => {

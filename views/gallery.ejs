@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+
+<div class="w-full px-10 mt-20 mb-20">
+  <div class="text-center mb-10">
+    <div class="text-6xl font-bold mb-3">Gallery 🖼️</div>
+    <p class="text-gray-500 text-lg">Photos and videos, in one place.</p>
+  </div>
+
+  <div class="flex justify-center gap-3 mb-10">
+    <button
+      id="show-photos"
+      class="toggle-btn bg-black text-white px-6 py-3 rounded-full font-bold"
+    >
+      Photos
+    </button>
+    <button
+      id="show-videos"
+      class="toggle-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-bold"
+    >
+      Videos
+    </button>
+  </div>
+
+  <!-- Photos section -->
+  <div id="photos-section"><%- include('gallery-pictures') %></div>
+
+  <!-- Videos section -->
+  <!-- Videos section -->
+  <div id="videos-section" class="hidden"><%- include('gallery-videos') %></div>
+</div>
+
+<script>
+  const photosBtn = document.getElementById("show-photos");
+  const videosBtn = document.getElementById("show-videos");
+  const photosSection = document.getElementById("photos-section");
+  const videosSection = document.getElementById("videos-section");
+
+  photosBtn.addEventListener("click", () => {
+    photosSection.classList.remove("hidden");
+    videosSection.classList.add("hidden");
+    photosBtn.classList.replace("bg-gray-200", "bg-black");
+    photosBtn.classList.replace("text-gray-700", "text-white");
+    videosBtn.classList.replace("bg-black", "bg-gray-200");
+    videosBtn.classList.replace("text-white", "text-gray-700");
+  });
+
+  videosBtn.addEventListener("click", () => {
+    videosSection.classList.remove("hidden");
+    photosSection.classList.add("hidden");
+    videosBtn.classList.replace("bg-gray-200", "bg-black");
+    videosBtn.classList.replace("text-gray-700", "text-white");
+    photosBtn.classList.replace("bg-black", "bg-gray-200");
+    photosBtn.classList.replace("text-white", "text-gray-700");
+  });
+</script>
+
+<%- include('partials/footer') %>

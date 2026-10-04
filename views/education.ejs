@@ -57,6 +57,51 @@
     </div>
 
   </div>
+
+  <!-- Certifications -->
+  <%
+    const certifications = [
+      { title: 'Claude Code 101', issuer: 'Anthropic', issued: 'Apr 2026', id: 'ju8pr66rnkf7', url: '' },
+      { title: 'Data Cloud Consultant', issuer: 'Salesforce', issued: 'Jan 2025', id: '5612540', url: '' },
+      { title: 'AI Specialist', issuer: 'Salesforce', issued: 'Oct 2024', id: '5006252', url: '' },
+      { title: 'AI Associate', issuer: 'Salesforce', issued: 'Oct 2024', id: '5005965', url: '' },
+      { title: 'Front End Development', issuer: 'IBM', issued: 'Jul 2023', id: 'STU6461fbca16c2e1684143050', url: '' },
+      { title: 'Certificate for Completion of Python 3 Training', issuer: 'Indian Institute of Technology, Bombay', issued: 'May 2023', id: '3022511XIL', url: '' },
+      { title: 'Certificate for Completion of C++ Training', issuer: 'Indian Institute of Technology, Bombay', issued: 'Jan 2022', id: '30225118R1', url: '' }
+    ];
+  %>
+
+  <div class="mt-16">
+    <div class="flex justify-between items-center mb-10">
+      <div class="text-6xl font-bold">Certifications 🏅</div>
+      <div class="text-gray-500 text-lg"><%= certifications.length %> earned</div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% certifications.forEach(cert => { %>
+        <div class="border-2 border-black rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000] transition-all duration-200">
+          <div>
+            <div class="flex justify-between items-start gap-4 mb-3">
+              <span class="inline-block bg-black text-white text-xs font-bold px-3 py-1 rounded-full">
+                <%= cert.issuer %>
+              </span>
+              <span class="text-sm font-bold text-gray-500 whitespace-nowrap"><%= cert.issued %></span>
+            </div>
+            <div class="text-2xl font-bold leading-snug"><%= cert.title %></div>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-gray-300 flex justify-between items-center gap-4">
+            <div class="text-sm text-gray-500 break-all">ID: <%= cert.id %></div>
+            <% if (cert.url) { %>
+              <a href="<%= cert.url %>" target="_blank" rel="noopener noreferrer"
+                 class="text-sm font-bold whitespace-nowrap hover:underline">View ↗</a>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
 </div>
 
 <%- include('partials/footer') %>
