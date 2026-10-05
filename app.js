@@ -52,6 +52,14 @@ app.get("/gallery", (req, res) => {
   res.render("gallery");
 });
 
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) console.log("Logout error: ", err);
+    res.clearCookie("connect.sid");
+    res.redirect("/blog");
+  });
+});
+
 // 404 catch-all 
 app.use((req, res) => {
   res.status(404).render("404");

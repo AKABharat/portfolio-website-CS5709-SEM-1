@@ -41,7 +41,7 @@ const loginCreationHandle = async (req, res) => {
     }
     req.session.userId = user._id;
     req.session.username = user.username;
-    res.redirect("/");
+    res.redirect("/blog");
   } catch (err) {
     console.log("ERROR: ", err);
     res.render("login", { error: "Something went wrong. Please try again." });
