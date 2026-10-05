@@ -1,0 +1,540 @@
+<%- include('partials/header') %>
+
+<style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        .readme-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 45px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .readme-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .readme-header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .readme-header p {
+            color: #666;
+            font-size: 17px;
+        }
+
+        .readme-section {
+            margin-bottom: 35px;
+        }
+
+        .readme-section h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .readme-section h3 {
+            font-size: 20px;
+            margin: 18px 0 8px;
+        }
+
+        .readme-section p {
+            margin-bottom: 12px;
+        }
+
+        .readme-section ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .readme-section li {
+            margin-bottom: 7px;
+        }
+
+        .phase-box {
+            background: #f8fafc;
+            border-left: 5px solid #2563eb;
+            padding: 18px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .project-structure {
+            background: #111827;
+            color: #f9fafb;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .info-table th,
+        .info-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .info-table th {
+            background: #f3f4f6;
+        }
+
+        .score-box {
+            background: #eef6ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .github-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 12px 22px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .github-button:hover {
+            background: #2563eb;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 22px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .readme-container {
+                width: 94%;
+                padding: 25px;
+                margin: 25px auto;
+            }
+
+            .readme-header h1 {
+                font-size: 30px;
+            }
+
+            .readme-section h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="readme-container">
+
+    <!-- SECTION 1: HEADER -->
+    <div class="readme-header">
+        <h1>README</h1>
+        <p>CS5709 – Software Engineering Evolution | Digital Portfolio</p>
+        <p><strong>Student:</strong> Bharat Doodi</p>
+    </div>
+
+
+    <!-- SECTION 2: PROJECT OVERVIEW -->
+    <div class="readme-section">
+        <h2>1. Project Overview</h2>
+
+        <p>
+            This digital portfolio was developed as part of the
+            <strong>CS5709 – Software Engineering Evolution</strong>
+            module.
+        </p>
+
+        <p>
+            The portfolio demonstrates the application of software engineering
+            principles through the development of a functional web application
+            containing multiple pages, navigation, styling, routing,
+            multimedia content, blog functionality and instant messaging.
+        </p>
+    </div>
+
+
+    <!-- SECTION 3: ASSESSMENT -->
+    <div class="readme-section">
+        <h2>2. Assessment Information</h2>
+
+        <table class="info-table">
+            <tr>
+                <th>Module</th>
+                <td>CS5709 – Software Engineering Evolution</td>
+            </tr>
+
+            <tr>
+                <th>Assessment</th>
+                <td>Assessment 1 – Digital Portfolio (Phase 1)</td>
+            </tr>
+
+            <tr>
+                <th>Student</th>
+                <td>Bharat Doodi</td>
+            </tr>
+
+            <tr>
+                <th>Semester</th>
+                <td>Semester 1</td>
+            </tr>
+
+            <tr>
+                <th>Weighting</th>
+                <td>15% of total module mark</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- SECTION 4: FEATURES -->
+    <div class="readme-section">
+        <h2>3. Features of the Portfolio</h2>
+
+        <ul>
+            <li>Home page</li>
+            <li>About page</li>
+            <li>Education page</li>
+            <li>Professional Knowledge page</li>
+            <li>Projects page</li>
+            <li>Pictures Gallery</li>
+            <li>Video Gallery</li>
+            <li>Blog functionality</li>
+            <li>User registration and login</li>
+            <li>Instant messaging facility</li>
+            <li>Responsive CSS design</li>
+            <li>Server-side routing</li>
+            <li>README documentation page</li>
+        </ul>
+    </div>
+
+
+    <!-- SECTION 5: PHASE 1 -->
+    <div class="readme-section">
+        <h2>4. Phase 1 Features</h2>
+
+        <div class="phase-box">
+            <h3>Phase 1 – Core Portfolio</h3>
+
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Education</li>
+                <li>Professional Knowledge</li>
+                <li>Projects</li>
+                <li>Picture Gallery</li>
+                <li>Video Gallery</li>
+                <li>Navigation bar</li>
+                <li>Responsive CSS design</li>
+                <li>Page routing</li>
+                <li>README documentation</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- SECTION 6: PHASE 2 -->
+    <div class="readme-section">
+        <h2>5. Phase 2 Features</h2>
+
+        <div class="phase-box">
+            <h3>Phase 2 – Extended Functionality</h3>
+
+            <ul>
+                <li>Blog functionality</li>
+                <li>User authentication</li>
+                <li>Database integration</li>
+                <li>Instant messaging</li>
+                <li>Advanced user interaction</li>
+                <li>Future enhancements and additional services</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- SECTION 7: SOFTWARE ARCHITECTURE -->
+    <div class="readme-section">
+        <h2>6. Software Architecture</h2>
+
+        <p>
+            The portfolio follows a client-server web application structure.
+            The browser sends requests to the Express server, which handles
+            routing and serves the required pages.
+        </p>
+
+        <h3>Architecture Flow</h3>
+
+        <div class="project-structure">
+Browser
+   ↓
+Express.js Server
+   ↓
+Routing
+   ↓
+EJS Views
+   ↓
+CSS / JavaScript / Images
+   ↓
+Database / External Services
+        </div>
+    </div>
+
+
+    <!-- SECTION 8: CONTROL FLOW -->
+    <div class="readme-section">
+        <h2>7. Control Flow</h2>
+
+        <p>
+            The general control flow of the application is:
+        </p>
+
+        <div class="project-structure">
+User visits website
+        ↓
+HTTP request sent to server
+        ↓
+Express route identified
+        ↓
+Required data/content processed
+        ↓
+EJS page rendered
+        ↓
+HTML/CSS/JavaScript returned
+        ↓
+User interacts with the page
+        </div>
+    </div>
+
+
+    <!-- SECTION 9: COMPONENTS -->
+    <div class="readme-section">
+        <h2>8. Main Components</h2>
+
+        <ul>
+            <li><strong>Express.js</strong> – Backend web framework</li>
+            <li><strong>Node.js</strong> – Runtime environment</li>
+            <li><strong>EJS</strong> – Dynamic HTML templating</li>
+            <li><strong>CSS</strong> – Page styling and responsive layout</li>
+            <li><strong>JavaScript</strong> – Client-side interactions</li>
+            <li><strong>MongoDB</strong> – Database functionality</li>
+            <li><strong>Crisp</strong> – Instant messaging/chat facility</li>
+        </ul>
+    </div>
+
+
+    <!-- SECTION 10: PROJECT STRUCTURE -->
+    <div class="readme-section">
+        <h2>9. Project Structure</h2>
+
+        <div class="project-structure">
+portfolio-website-CS5709-SEM-1/
+│
+├── app.js
+├── package.json
+├── package-lock.json
+├── README.md
+├── DEPLOYMENT.md
+│
+├── public/
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── videos/
+│
+├── views/
+│   ├── index.ejs
+│   ├── about.ejs
+│   ├── education.ejs
+│   ├── professional.ejs
+│   ├── projects.ejs
+│   ├── blog.ejs
+│   ├── gallery.ejs
+│   ├── readme.ejs
+│   │
+│   └── partials/
+│       ├── header.ejs
+│       └── footer.ejs
+│
+└── ...
+        </div>
+    </div>
+
+
+    <!-- SECTION 11: DEVELOPMENT -->
+    <div class="readme-section">
+        <h2>10. Development Iterations</h2>
+
+        <h3>Iteration 1</h3>
+
+        <p>
+            The first development iteration focused on creating the main
+            portfolio pages, navigation and routing functionality.
+        </p>
+
+        <h3>Iteration 2</h3>
+
+        <p>
+            The second iteration focused on CSS formatting, responsive design,
+            improved navigation, multimedia content and additional portfolio
+            functionality.
+        </p>
+    </div>
+
+
+    <!-- SECTION 12: EVALUATION -->
+    <div class="readme-section">
+        <h2>11. Evaluation</h2>
+
+        <p>
+            The portfolio successfully implements the major requirements of
+            the Digital Portfolio assessment. The application provides a
+            structured navigation system, multiple portfolio pages,
+            multimedia galleries, blog functionality and interactive services.
+        </p>
+
+        <div class="score-box">
+            <strong>Critical Review:</strong>
+
+            <p>
+                The current system provides a functional foundation, but
+                further improvements can be made in accessibility, advanced
+                authentication, database security, testing coverage and
+                deployment monitoring.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- SECTION 13: FUTURE ENHANCEMENTS -->
+    <div class="readme-section">
+        <h2>12. Future Enhancements</h2>
+
+        <ul>
+            <li>Improve accessibility and WCAG compliance</li>
+            <li>Add more comprehensive automated testing</li>
+            <li>Improve authentication and security</li>
+            <li>Add advanced database features</li>
+            <li>Introduce richer blog management</li>
+            <li>Improve messaging functionality</li>
+            <li>Add analytics and monitoring</li>
+            <li>Further optimise mobile performance</li>
+        </ul>
+    </div>
+
+
+    <!-- SECTION 14: LOCAL SETUP -->
+    <div class="readme-section">
+        <h2>13. Running the Project Locally</h2>
+
+        <h3>Step 1 – Install dependencies</h3>
+
+        <div class="project-structure">
+npm install
+        </div>
+
+        <h3>Step 2 – Start the application</h3>
+
+        <div class="project-structure">
+npm start
+        </div>
+
+        <h3>Step 3 – Open the application</h3>
+
+        <div class="project-structure">
+http://localhost:8000
+        </div>
+    </div>
+
+
+    <!-- SECTION 15: ENVIRONMENT VARIABLES -->
+    <div class="readme-section">
+        <h2>14. Environment Variables</h2>
+
+        <p>
+            Sensitive configuration values should be stored using environment
+            variables rather than being hard-coded in the source code.
+        </p>
+
+        <div class="project-structure">
+MONGO_URI=your_mongodb_connection_string
+SESSION_SECRET=your_session_secret
+PORT=8000
+        </div>
+    </div>
+
+
+    <!-- SECTION 16: DEPLOYMENT -->
+    <div class="readme-section">
+        <h2>15. Deployment</h2>
+
+        <p>
+            The application can be deployed as a Node.js web service using a
+            cloud hosting platform such as Render.
+        </p>
+
+        <p>
+            The deployment should use the production environment variables
+            and the hosting platform's assigned PORT.
+        </p>
+    </div>
+
+
+    <!-- SECTION 17: GITHUB -->
+    <div class="readme-section">
+        <h2>16. Source Code</h2>
+
+        <p>
+            The source code for this project is maintained in the GitHub
+            repository.
+        </p>
+
+        <a
+            href="https://github.com/AKABharat/portfolio-website-CS5709-SEM-1.git"
+            target="_blank"
+            class="github-button">
+            View Project on GitHub
+        </a>
+    </div>
+
+
+    <!-- SECTION 18: BACK -->
+    <div>
+        <a href="/" class="back-button">
+            ← Back to Home
+        </a>
+    </div>
+
+</div>
+
+<%- include('partials/footer') %>

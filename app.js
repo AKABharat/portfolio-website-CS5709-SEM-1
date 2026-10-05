@@ -60,6 +60,10 @@ app.post("/logout", (req, res) => {
   });
 });
 
+app.get('/readme', (req, res) => {
+    res.render('readme');
+});
+
 // 404 catch-all 
 app.use((req, res) => {
   res.status(404).render("404");
