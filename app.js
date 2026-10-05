@@ -52,12 +52,9 @@ app.get("/gallery", (req, res) => {
   res.render("gallery");
 });
 
-app.get("/signup", (req, res) => {
-  res.render("signup");
-});
-
-app.get("/login", (req, res) => {
-  res.render("login");
+// 404 catch-all 
+app.use((req, res) => {
+  res.status(404).render("404");
 });
 
 app.listen(PORT, () => {
