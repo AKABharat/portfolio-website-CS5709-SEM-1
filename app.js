@@ -7,7 +7,6 @@ const blogRoutes = require("./routes/blog");
 const mongoose = require("mongoose");
 
 const app = express();
-const PORT = 8000;
 app.set("view engine", "ejs");
 
 app.use(
@@ -52,6 +51,14 @@ app.get("/gallery", (req, res) => {
   res.render("gallery");
 });
 
+app.get("/gallery/pictures", (req, res) => {
+  res.render("gallery");
+});
+
+app.get("/gallery/videos", (req, res) => {
+  res.render("gallery", { initial: "Videos" });
+});
+
 app.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) console.log("Logout error: ", err);
@@ -69,6 +76,6 @@ app.use((req, res) => {
   res.status(404).render("404");
 });
 
-app.listen(PORT, () => {
-  console.log("server listening on port: ", PORT);
+app.listen(process.env.PORT || 8000, () => {
+  console.log("server listening");
 });
