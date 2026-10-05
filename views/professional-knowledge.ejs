@@ -1,74 +1,42 @@
-<%- include('partials/header') %>
+<%- include('partials/header', {
+  pageTitle: 'Professional Knowledge',
+  pageDesc: 'Bharat’s software engineering, data analytics and frontend work experience.',
+  currentPath: '/professional-knowledge'
+}) %>
 
-<style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(-3deg); }
-    50% { transform: translateY(-15px) rotate(3deg); }
-  }
-  .brain-float {
-    animation: float 3s ease-in-out infinite;
-    display: inline-block;
-  }
-</style>
+<%
+  const jobs = [
+    {"title":"Software Engineer","company":"Aranya Consultancy — Gurugram, Haryana","period":"02/2025 - 06/2026","bullets":["Software analysis & consultancy, contributing to data analytics projects","Exploring and analyzing large datasets using Python and SQL","Transforming raw data into business intelligence dashboards for data-driven decisions","Writing SQL functions, procedures, views, indexes, and subqueries","Performed ETL operations and built interactive dashboards in Power BI"]},
+    {"title":"Associate Software Engineer","company":"Briskminds Software Solutions — Jaipur, Rajasthan","period":"01/2024 - 02/2025","bullets":["Salesforce Admin & Developer — Apex, Lightning Web Components, Aura Components, Visualforce","Contributed to internal and client-facing projects across the Salesforce ecosystem","Developed Retail Application features including product catalog and payment page"]},
+    {"title":"Frontend Web Developer Intern","company":"IBM SkillsBuild Platform","period":"06/2023 - 07/2023","bullets":["Trained in front-end technologies — HTML, CSS, JavaScript","Built an Amazon website UI clone and submitted it on time"]}
+  ];
+%>
 
-<div class="w-full px-10 mt-20 mb-20">
+<div class="w-full py-12 sm:py-20">
 
-  <div class="flex justify-between items-center mb-16">
-    <div class="text-7xl font-bold">Professional Knowledge 💼</div>
-    <div class="text-[100px]">
-      <span class="brain-float">🧠</span>
-    </div>
+  <div class="flex justify-between items-center mb-16 gap-4">
+    <h1 class="page-title">Professional Knowledge 💼</h1>
+    <span aria-hidden="true" class="text-6xl md:text-[100px] float-icon">🧠</span>
   </div>
 
-  <!-- My Work Experience -->
   <div class="space-y-10 mb-16">
-
-    <div class="border-b-2 border-black pb-8">
-      <div class="flex justify-between items-start">
-        <div>
-          <div class="text-3xl font-bold">Software Engineer</div>
-          <div class="text-xl text-gray-600 mt-1">Aranya Consultancy — Gurugram, Haryana</div>
+    <% jobs.forEach((job, i) => { %>
+      <article class="pb-8 <%= i < jobs.length - 1 ? 'border-b-2 border-black' : '' %>">
+        <div class="flex flex-col sm:flex-row justify-between items-start gap-3">
+          <div>
+            <h2 class="text-3xl font-bold"><%= job.title %></h2>
+            <p class="text-xl text-gray-600 mt-1"><%= job.company %></p>
+          </div>
+          <div class="text-lg font-bold sm:text-right shrink-0"><%= job.period %></div>
         </div>
-        <div class="text-lg font-bold text-right">02/2025 - 06/2026</div>
-      </div>
-      <ul class="text-gray-600 text-lg font-light list-disc ml-5 mt-4 space-y-1">
-        <li>Software analysis & consultancy, contributing to data analytics projects</li>
-        <li>Exploring and analyzing large datasets using Python and SQL</li>
-        <li>Transforming raw data into business intelligence dashboards for data-driven decisions</li>
-        <li>Writing SQL functions, procedures, views, indexes, and subqueries</li>
-        <li>Performed ETL operations and built interactive dashboards in Power BI</li>
-      </ul>
-    </div>
 
-    <div class="border-b-2 border-black pb-8">
-      <div class="flex justify-between items-start">
-        <div>
-          <div class="text-3xl font-bold">Associate Software Engineer</div>
-          <div class="text-xl text-gray-600 mt-1">Briskminds Software Solutions — Jaipur, Rajasthan</div>
-        </div>
-        <div class="text-lg font-bold text-right">01/2024 - 02/2025</div>
-      </div>
-      <ul class="text-gray-600 text-lg font-light list-disc ml-5 mt-4 space-y-1">
-        <li>Salesforce Admin & Developer — Apex, Lightning Web Components, Aura Components, Visualforce</li>
-        <li>Contributed to internal and client-facing projects across the Salesforce ecosystem</li>
-        <li>Developed Retail Application features including product catalog and payment page</li>
-      </ul>
-    </div>
-
-    <div class="pb-8">
-      <div class="flex justify-between items-start">
-        <div>
-          <div class="text-3xl font-bold">Frontend Web Developer Intern</div>
-          <div class="text-xl text-gray-600 mt-1">IBM SkillsBuild Platform</div>
-        </div>
-        <div class="text-lg font-bold text-right">06/2023 - 07/2023</div>
-      </div>
-      <ul class="text-gray-600 text-lg font-light list-disc ml-5 mt-4 space-y-1">
-        <li>Trained in front-end technologies — HTML, CSS, JavaScript</li>
-        <li>Built an Amazon website UI clone and submitted it on time</li>
-      </ul>
-    </div>
-
+        <ul class="text-gray-600 text-lg font-light list-disc ml-5 mt-4 space-y-1">
+          <% job.bullets.forEach(b => { %>
+            <li><%= b %></li>
+          <% }) %>
+        </ul>
+      </article>
+    <% }) %>
   </div>
 
 </div>

@@ -1,57 +1,219 @@
-<%- include('partials/header') %>
+<%
+  // Routes: /gallery and /gallery/pictures -> render('gallery')
+  //         /gallery/videos               -> render('gallery', { initial: 'Videos' })
+  const initialTab = (typeof initial !== 'undefined' && initial === 'Videos') ? 'Videos' : 'Photos';
+%>
+<%- include('partials/header', {
+  pageTitle: initialTab === 'Videos' ? 'Gallery Videos' : 'Gallery Photos',
+  pageDesc: 'Browse Bharat’s gallery of photos and videos.',
+  currentPath: '/gallery'
+}) %>
 
-<div class="w-full px-10 mt-20 mb-20">
+<%
+  const photos = [
+    { label: 'UL Campus', category: 'University', caption: 'First week exploring the University of Limerick campus.', src: 'https://www.educationinireland.com/resource/image/182326/landscape_ratio16x9/880/495/b9aada4a8025d69fc059fd179e4d8b9e/48750FAED957D365458521961827D89E/university-of-limerick-ul-.jpg' },
+    { label: 'Aranya Consultancy', category: 'Work', caption: 'Working on data analytics projects at Aranya Consultancy.', src: 'https://www.dlf.in/offices/all-images/property-imgs/property_image_69affea7bb9c8.jpg' },
+    { label: 'Car Sketching', category: 'Personal', caption: 'One of my car sketches — a hobby I keep coming back to.', src: 'https://assets6.domestika.org/course-images/000/051/426/51426-big.jpeg' },
+    { label: 'CS5741 Lab', category: 'University', caption: 'Working through a lab session during CS5741.', src: 'https://scontent-dub4-1.xx.fbcdn.net/v/t39.30808-6/219155385_4035935789793094_2692075246558970538_n.png?stp=dst-jpg_tt6&cstp=mx800x544&ctp=p180x540&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=iKe1WUvAJyoQ7kNvwE6YNO8&_nc_oc=Adr3e3fizUTkChXZSaK8_cVVqUFFbGTpytz9jHLF6txRshRMrxcsHMNyi0ZWAiSlEgc&_nc_zt=23&_nc_ht=scontent-dub4-1.xx&_nc_gid=4uYzZ99z3LisYZmCZOv8ew&_nc_ss=7a289&oh=00_AQPZq7y2leyyo7qr-IlKgNWQw3HSBp7IuQDA9wCE1ysqGg&oe=6AC7639C' },
+    { label: 'Briskminds', category: 'Work', caption: 'Hands-on with Salesforce development at Briskminds.', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvkOo_42kdZwAGAaXDrBn33MRe_XL8U5sPaIWAyaeb_XfoH_SvlUIb6TU&s=10' },
+    { label: 'Limerick', category: 'Personal', caption: 'Exploring Limerick on a weekend off.', src: 'https://i.guim.co.uk/img/media/392bd570c80774e8815804d19c98a6d07e3177cd/174_0_5116_3070/master/5116.jpg?width=1900&dpr=2&s=none&crop=none' }
+  ];
+
+  const videos = [
+    { id: '3JluqTojuME', title: 'Node.js Crash Course', desc: 'A fast, practical introduction to backend development with Node.js.', category: 'Node.js Tutorial' },
+    { id: 'PkZNo7MFNFg', title: 'JavaScript Fundamentals', desc: 'A practical introduction to JavaScript fundamentals and the core concepts every developer should know.', category: 'JavaScript Tutorial' },
+    { id: '7EmboKQH8lM', title: 'Software Architecture Patterns', desc: 'An introduction to software architecture, design patterns, and making better decisions when building applications.', category: 'Software Architecture' },
+    { id: 'ofme2o29ngU', title: 'MongoDB Crash Course', desc: 'Learn the core MongoDB concepts needed to work with databases in modern backend applications.', category: 'MongoDB Tutorial' }
+  ];
+
+  const filters = ['All', 'University', 'Work', 'Personal'];
+
+  // Shared button looks (the JS below swaps these when a button becomes active/inactive)
+  const btnBase = 'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm cursor-pointer transition-colors';
+  const btnOn = 'bg-black text-white shadow hover:bg-black/90';
+  const btnOff = 'bg-gray-200 text-gray-700 shadow-sm hover:bg-gray-200/80';
+%>
+
+<div class="w-full py-12 sm:py-20">
+
   <div class="text-center mb-10">
-    <div class="text-6xl font-bold mb-3">Gallery 🖼️</div>
-    <p class="text-gray-500 text-lg">Photos and videos, in one place.</p>
+    <h1 class="text-5xl md:text-6xl font-bold mb-3">Gallery 🖼️</h1>
+    <p class="text-gray-600 text-lg">Photos and videos, in one place.</p>
   </div>
 
-  <div class="flex justify-center gap-3 mb-10">
-    <button
-      id="show-photos"
-      class="toggle-btn bg-black text-white px-6 py-3 rounded-full font-bold"
-    >
-      Photos
-    </button>
-    <button
-      id="show-videos"
-      class="toggle-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-bold"
-    >
-      Videos
-    </button>
+  <!-- Photos / Videos tabs -->
+  <div role="tablist" aria-label="Gallery media" class="flex justify-center gap-3 mb-10">
+    <% ['Photos', 'Videos'].forEach(t => { %>
+      <button type="button" role="tab" data-tab="<%= t %>" aria-selected="<%= initialTab === t %>"
+        class="tab-btn h-auto px-6 py-3 rounded-full font-bold <%= btnBase %> <%= initialTab === t ? btnOn : btnOff %>"><%= t %></button>
+    <% }) %>
   </div>
 
-  <!-- Photos section -->
-  <div id="photos-section"><%- include('gallery-pictures') %></div>
+  <!-- PHOTOS -->
+  <div id="photos-panel" class="<%= initialTab === 'Photos' ? '' : 'hidden' %>">
 
-  <!-- Videos section -->
-  <!-- Videos section -->
-  <div id="videos-section" class="hidden"><%- include('gallery-videos') %></div>
+    <div class="flex justify-center gap-3 flex-wrap mb-10">
+      <% filters.forEach(f => { %>
+        <button type="button" data-filter="<%= f %>" aria-pressed="<%= f === 'All' %>"
+          class="filter-btn h-9 rounded-full px-5 py-2 font-medium <%= btnBase %> <%= f === 'All' ? btnOn : btnOff %>"><%= f %></button>
+      <% }) %>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% photos.forEach((p, i) => { %>
+        <button type="button" data-index="<%= i %>" data-category="<%= p.category %>" aria-label="View <%= p.label %>"
+          class="photo-card group relative block h-64 w-full overflow-hidden rounded-2xl border-2 border-black p-0 cursor-pointer">
+          <span class="absolute top-3 left-3 bg-white/90 text-black text-xs font-bold px-3 py-1 rounded-full z-10"><%= p.label %></span>
+          <img src="<%= p.src %>" alt="<%= p.label %>" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+        </button>
+      <% }) %>
+    </div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div id="videos-panel" class="max-w-4xl mx-auto <%= initialTab === 'Videos' ? '' : 'hidden' %>">
+
+    <div class="rounded-2xl overflow-hidden border-2 border-black mb-6">
+      <iframe id="video-player" class="w-full aspect-video" title="<%= videos[0].title %>"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-start gap-3 mb-10">
+      <div>
+        <h2 id="video-title" class="text-2xl font-bold"><%= videos[0].title %></h2>
+        <p id="video-desc" class="text-gray-600 mt-1"><%= videos[0].desc %></p>
+      </div>
+      <span id="video-count" class="text-gray-600 text-sm whitespace-nowrap">Video 1 of <%= videos.length %></span>
+    </div>
+
+    <div class="space-y-4">
+      <% videos.forEach((v, i) => { %>
+        <button type="button" data-video="<%= i %>" aria-pressed="<%= i === 0 %>"
+          class="video-item w-full flex justify-start gap-4 items-center p-3 rounded-xl border-2 border-black text-left cursor-pointer hover:bg-gray-100 transition-colors">
+          <span class="bg-black text-white w-10 h-10 shrink-0 flex items-center justify-center rounded-lg font-bold"><%= i + 1 %></span>
+          <span>
+            <strong class="block"><%= v.title %></strong>
+            <span class="text-gray-600 text-sm"><%= v.category %></span>
+          </span>
+        </button>
+      <% }) %>
+    </div>
+  </div>
+
+</div>
+
+<!-- Photo lightbox -->
+<div id="lightbox" role="presentation" class="hidden fixed inset-0 bg-black/80 items-center justify-center z-50 p-4 md:p-6">
+  <div role="dialog" aria-modal="true" aria-label="Photo preview" class="bg-white rounded-2xl overflow-hidden max-w-2xl w-full relative">
+    <button id="lightbox-close" type="button" aria-label="Close photo"
+      class="absolute top-4 right-4 h-9 w-9 rounded-full z-10 bg-black text-white shadow hover:bg-black/90 cursor-pointer">✕</button>
+    <img id="lightbox-img" src="" alt="" class="w-full max-h-[65vh] object-contain bg-gray-100">
+    <div class="p-6">
+      <span id="lightbox-tag" class="inline-block bg-black text-white text-xs font-bold px-3 py-1 rounded-full mb-3"></span>
+      <p id="lightbox-caption" class="text-gray-600 text-lg"></p>
+    </div>
+  </div>
 </div>
 
 <script>
-  const photosBtn = document.getElementById("show-photos");
-  const videosBtn = document.getElementById("show-videos");
-  const photosSection = document.getElementById("photos-section");
-  const videosSection = document.getElementById("videos-section");
+  (function () {
+    const photos = <%- JSON.stringify(photos) %>;
+    const videos = <%- JSON.stringify(videos) %>;
+    const ON = '<%= btnOn %>'.split(' ');
+    const OFF = '<%= btnOff %>'.split(' ');
 
-  photosBtn.addEventListener("click", () => {
-    photosSection.classList.remove("hidden");
-    videosSection.classList.add("hidden");
-    photosBtn.classList.replace("bg-gray-200", "bg-black");
-    photosBtn.classList.replace("text-gray-700", "text-white");
-    videosBtn.classList.replace("bg-black", "bg-gray-200");
-    videosBtn.classList.replace("text-white", "text-gray-700");
-  });
+    function setActive(btn, active) {
+      btn.classList.remove(...(active ? OFF : ON));
+      btn.classList.add(...(active ? ON : OFF));
+    }
 
-  videosBtn.addEventListener("click", () => {
-    videosSection.classList.remove("hidden");
-    photosSection.classList.add("hidden");
-    videosBtn.classList.replace("bg-gray-200", "bg-black");
-    videosBtn.classList.replace("text-gray-700", "text-white");
-    photosBtn.classList.replace("bg-black", "bg-gray-200");
-    photosBtn.classList.replace("text-white", "text-gray-700");
-  });
+    /* ---------- Tabs ---------- */
+    const tabs = document.querySelectorAll('.tab-btn');
+    const photosPanel = document.getElementById('photos-panel');
+    const videosPanel = document.getElementById('videos-panel');
+    const player = document.getElementById('video-player');
+    let currentVideo = 0;
+
+    function loadVideo(i) {
+      currentVideo = i;
+      const v = videos[i];
+      player.src = 'https://www.youtube.com/embed/' + v.id;
+      player.title = v.title;
+      document.getElementById('video-title').textContent = v.title;
+      document.getElementById('video-desc').textContent = v.desc;
+      document.getElementById('video-count').textContent = 'Video ' + (i + 1) + ' of ' + videos.length;
+      document.querySelectorAll('.video-item').forEach((b, idx) =>
+        b.setAttribute('aria-pressed', String(idx === i)));
+    }
+
+    function showTab(name) {
+      const isVideos = name === 'Videos';
+      photosPanel.classList.toggle('hidden', isVideos);
+      videosPanel.classList.toggle('hidden', !isVideos);
+      tabs.forEach(t => {
+        const on = t.dataset.tab === name;
+        t.setAttribute('aria-selected', String(on));
+        setActive(t, on);
+      });
+      if (isVideos) loadVideo(currentVideo);   // load (or resume) the video only when needed
+      else player.removeAttribute('src');      // stops playback when leaving Videos
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => showTab(t.dataset.tab)));
+    if (<%= initialTab === 'Videos' %>) loadVideo(0);
+
+    /* ---------- Playlist ---------- */
+    document.querySelectorAll('.video-item').forEach(b =>
+      b.addEventListener('click', () => loadVideo(Number(b.dataset.video))));
+
+    /* ---------- Photo filter ---------- */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.photo-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          const on = b === btn;
+          b.setAttribute('aria-pressed', String(on));
+          setActive(b, on);
+        });
+        const f = btn.dataset.filter;
+        cards.forEach(c => c.classList.toggle('hidden', !(f === 'All' || c.dataset.category === f)));
+      });
+    });
+
+    /* ---------- Lightbox ---------- */
+    const lightbox = document.getElementById('lightbox');
+    let lastFocus = null;
+
+    function openLightbox(card) {
+      const p = photos[Number(card.dataset.index)];
+      lastFocus = card;
+      document.getElementById('lightbox-img').src = p.src;
+      document.getElementById('lightbox-img').alt = p.label;
+      document.getElementById('lightbox-tag').textContent = p.label;
+      document.getElementById('lightbox-caption').textContent = p.caption;
+      lightbox.querySelector('[role="dialog"]').setAttribute('aria-label', p.label);
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('lightbox-close').focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    cards.forEach(c => c.addEventListener('click', () => openLightbox(c)));
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) closeLightbox();
+    });
+  })();
 </script>
 
 <%- include('partials/footer') %>
