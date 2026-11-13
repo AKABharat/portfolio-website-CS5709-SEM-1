@@ -10,22 +10,8 @@
 }) %>
 
 <%
-  const photos = [
-    { label: 'UL Campus', category: 'University', caption: 'First week exploring the University of Limerick campus.', src: 'https://www.educationinireland.com/resource/image/182326/landscape_ratio16x9/880/495/b9aada4a8025d69fc059fd179e4d8b9e/48750FAED957D365458521961827D89E/university-of-limerick-ul-.jpg' },
-    { label: 'Aranya Consultancy', category: 'Work', caption: 'Working on data analytics projects at Aranya Consultancy.', src: 'https://www.dlf.in/offices/all-images/property-imgs/property_image_69affea7bb9c8.jpg' },
-    { label: 'Car Sketching', category: 'Personal', caption: 'One of my car sketches — a hobby I keep coming back to.', src: 'https://assets6.domestika.org/course-images/000/051/426/51426-big.jpeg' },
-    { label: 'CS5741 Lab', category: 'University', caption: 'Working through a lab session during CS5741.', src: 'https://images.unsplash.com/photo-1629904853716-f0bc54eea481' },
-    { label: 'Briskminds', category: 'Work', caption: 'Hands-on with Salesforce development at Briskminds.', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvkOo_42kdZwAGAaXDrBn33MRe_XL8U5sPaIWAyaeb_XfoH_SvlUIb6TU&s=10' },
-    { label: 'Limerick', category: 'Personal', caption: 'Exploring Limerick on a weekend off.', src: 'https://i.guim.co.uk/img/media/392bd570c80774e8815804d19c98a6d07e3177cd/174_0_5116_3070/master/5116.jpg?width=1900&dpr=2&s=none&crop=none' }
-  ];
-
-  const videos = [
-    { id: '3JluqTojuME', title: 'Node.js Crash Course', desc: 'A fast, practical introduction to backend development with Node.js.', category: 'Node.js Tutorial' },
-    { id: 'PkZNo7MFNFg', title: 'JavaScript Fundamentals', desc: 'A practical introduction to JavaScript fundamentals and the core concepts every developer should know.', category: 'JavaScript Tutorial' },
-    { id: '7EmboKQH8lM', title: 'Software Architecture Patterns', desc: 'An introduction to software architecture, design patterns, and making better decisions when building applications.', category: 'Software Architecture' },
-    { id: 'ofme2o29ngU', title: 'MongoDB Crash Course', desc: 'Learn the core MongoDB concepts needed to work with databases in modern backend applications.', category: 'MongoDB Tutorial' }
-  ];
-
+  // photos and videos come from data/gallery-photos.json and
+  // data/gallery-videos.json via page_controller.js
   const filters = ['All', 'University', 'Work', 'Personal'];
 
   // Shared button looks (the JS below swaps these when a button becomes active/inactive)

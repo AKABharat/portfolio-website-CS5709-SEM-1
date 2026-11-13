@@ -1,10 +1,11 @@
 {
   "name": "portfolio-website",
-  "version": "1.0.0",
-  "description": "Assignment 1 | CS5709 SEM 1",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "CS5709 Digital Portfolio — Phase 2",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "tailwind": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch"
   },
   "repository": {
@@ -22,10 +23,13 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "bcryptjs": "^3.0.3",
+    "connect-mongo": "^5.1.0",
     "dotenv": "^18.0.5",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
+    "express-rate-limit": "^7.5.1",
     "express-session": "^1.19.0",
+    "express-validator": "^7.2.1",
     "mongoose": "^9.10.4",
     "nodemon": "^3.1.14"
   },
