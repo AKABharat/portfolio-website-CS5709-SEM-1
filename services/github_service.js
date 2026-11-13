@@ -4,9 +4,13 @@
  * shows real, current numbers instead of static hardcoded ones.
  *
  * Cached in memory for 10 minutes per process. This matters because
- * GitHub's unauthenticated API allows only 60 requests/hour per IP,
- * shared across every visitor hitting this Render instance — without
- * caching, a few page loads in quick succession could exhaust it.
+ * GitHub's *unauthenticated* API allows only 60 requests/hour — and on a
+ * shared host like Render, that quota is per outbound IP, shared across
+ * every other app/customer currently using that same IP, not just this
+ * one. In testing, that shared quota was already exhausted before this
+ * app made a single request of its own. Setting GITHUB_TOKEN (any
+ * personal access token, no scopes needed for public repos) raises the
+ * limit to 5000/hour, tied to the token instead of the IP.
  */
 const CACHE_TTL_MS = 10 * 60 * 1000;
 const cache = new Map();
@@ -29,10 +33,11 @@ async function getRepoStats(repo) {
   if (cached && Date.now() - cached.at < CACHE_TTL_MS) return cached.data;
 
   try {
-    const res = await fetch(`https://api.github.com/repos/${repo}`, {
-      headers: { Accept: "application/vnd.github+json", "User-Agent": "akabharat-portfolio" },
-    });
-    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    const headers = { Accept: "application/vnd.github+json", "User-Agent": "akabharat-portfolio" };
+    if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+
+    const res = await fetch(`https://api.github.com/repos/${repo}`, { headers });
+    if (!res.ok) throw new Error(`GitHub API ${res.status} (remaining quota: ${res.headers.get("x-ratelimit-remaining")})`);
     const json = await res.json();
     const data = {
       stars: json.stargazers_count,
@@ -41,7 +46,11 @@ async function getRepoStats(repo) {
     };
     cache.set(repo, { at: Date.now(), data });
     return data;
-  } catch {
+  } catch (err) {
+    // Logged (not thrown) so this is visible in server logs for
+    // debugging, while the page itself still renders fine without the
+    // stats badge — see the module doc comment for why this happens.
+    console.warn(`[github_service] stats fetch failed for ${repo}:`, err.message);
     return null;
   }
 }
