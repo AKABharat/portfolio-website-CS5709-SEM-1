@@ -69,6 +69,15 @@
     html.dark .bg-gray-100,
     html.dark .bg-gray-200 { background-color: #2a2a2e !important; color: #f1f1f1 !important; }
     html.dark #lightbox .bg-white { background-color: #16161a !important; }
+
+    /* The in-site /readme page has its own fixed "paper" design (its own
+       <style> block in views/readme.ejs) that predates the dark theme and
+       never set its own text color — it relied on the default black. The
+       overrides above change body's text color globally, which that page
+       inherited, leaving light-grey text stranded on a still-white card.
+       It isn't meant to re-theme, so pin its text colour back explicitly;
+       elements inside it that already set their own colour are unaffected. */
+    html.dark .readme-container { color: #222; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-white text-black">
