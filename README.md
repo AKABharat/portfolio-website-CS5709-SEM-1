@@ -19,8 +19,9 @@ A server-rendered digital portfolio built for **CS5709 – Software Engineering 
 8. [Local Setup](#local-setup)
 9. [Environment Variables](#environment-variables)
 10. [Deployment](#deployment)
-11. [Instant Messaging](#instant-messaging)
-12. [Evaluation and Future Enhancements](#evaluation-and-future-enhancements)
+11. [Continuous Integration / Continuous Deployment (CI/CD)](#continuous-integration--continuous-deployment-cicd)
+12. [Instant Messaging](#instant-messaging)
+13. [Evaluation and Future Enhancements](#evaluation-and-future-enhancements)
 
 ## Assessment Coverage
 
@@ -30,6 +31,8 @@ A server-rendered digital portfolio built for **CS5709 – Software Engineering 
 | Design | Block, control flow and component diagrams in `Assessment1_Report.md` section 2 |
 | Development – Iteration 1 | Home + About + Education + Professional Knowledge + Projects + Gallery + Blog, navigation bar, routing |
 | Development – Iteration 2 | Tailwind CSS, responsive layout, interactive gallery, Express routing, 404 page, authentication |
+| Development – Iteration 3 | JSON-backed content layer, MVC refactor (routes/controllers/services), CSRF, rate limiting, input validation, persistent sessions |
+| Development – Iteration 4 | GitHub Actions CI (lint + automated tests) on every pull request, documented in [CI/CD](#continuous-integration--continuous-deployment-cicd) |
 | Evaluation | Testing, critical review and prioritised enhancements in `Assessment1_Report.md` section 5 |
 
 ## Features
@@ -236,6 +239,27 @@ The app needs a server and a database, so it is deployed as a **Render web servi
 7. After deploy, test `/health`, `/`, `/gallery/videos`, `/blog`, sign-up and login.
 
 Live URL: https://portfolio-website-cs5709-sem-1.onrender.com/
+
+## Continuous Integration / Continuous Deployment (CI/CD)
+
+**CI (Continuous Integration)** is handled by GitHub Actions — [`.github/workflows/ci.yml`](./.github/workflows/ci.yml). On every pull request into `main`, and on every push to `main`, it:
+
+1. Checks out the code and installs dependencies (`npm ci`, using the committed `package-lock.json` for a reproducible install).
+2. Runs **ESLint** (`npm run lint`) — static analysis that catches real bugs (unused variables, undefined references) in addition to style issues.
+3. Runs the **Jest + Supertest** test suite (`npm test`) — `tests/app.test.js` exercises the app's routes with HTTP requests (home page renders, protected routes require auth, CSRF-less POSTs are rejected with 403, unknown routes 404), and `tests/content_service.test.js` unit-tests the JSON data/search layer.
+
+Both checks appear directly on the pull request in GitHub's UI before anything is merged — the point of CI is to catch a broken change *before* it reaches `main`, not after.
+
+**CD (Continuous Deployment)** is handled separately by **Render's own GitHub integration**, configured once in the Render dashboard: it watches `main` and automatically rebuilds + redeploys the live site on every push, independent of the Actions workflow above. The two are deliberately decoupled — GitHub Actions is the quality gate on the way *into* `main`; Render's auto-deploy is what happens once code *is* there.
+
+**Workflow used for every change:** create a feature/iteration branch → commit → push the branch → open a pull request into `main` → review the CI results on the PR → merge → Render auto-deploys the merged `main`.
+
+Run the same checks locally before pushing:
+
+```bash
+npm run lint
+npm test
+```
 
 ## Instant Messaging
 
