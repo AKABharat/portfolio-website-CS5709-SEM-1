@@ -51,6 +51,17 @@
                class="bg-black text-white text-sm px-3 py-1.5 rounded-lg flex items-center gap-1 hover:-translate-y-0.5 transition-transform whitespace-nowrap">Code ↗</a>
           </div>
 
+          <!-- Innovation: live GitHub stats, fetched server-side per
+               request (see services/github_service.js). Omitted entirely
+               when the API call failed/was rate-limited, rather than
+               showing a stale or fake number. -->
+          <% if (p.stats) { %>
+            <div class="flex items-center gap-4 text-sm text-gray-500 mb-3" title="Live from the GitHub API">
+              <span>⭐ <%= p.stats.stars %></span>
+              <span>🍴 <%= p.stats.forks %></span>
+            </div>
+          <% } %>
+
           <p class="text-gray-600 mb-4"><%= p.description %></p>
 
           <div class="flex flex-wrap gap-2">

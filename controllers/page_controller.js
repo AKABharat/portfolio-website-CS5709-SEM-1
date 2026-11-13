@@ -1,4 +1,5 @@
 const content = require("../services/content_service");
+const { getRepoStatsBatch } = require("../services/github_service");
 
 /** Renders the home page. */
 const homeHandle = (req, res) => res.render("index");
@@ -17,8 +18,18 @@ const educationHandle = (req, res) =>
 const professionalKnowledgeHandle = (req, res) =>
   res.render("professional-knowledge", { jobs: content.getJobs() });
 
-/** Renders the Projects page from data/projects.json. */
-const projectsHandle = (req, res) => res.render("projects", { projects: content.getProjects() });
+/**
+ * Renders the Projects page. Innovation feature: fetches live GitHub stats
+ * (stars/forks) for every project's repo in parallel and merges them in.
+ * getRepoStatsBatch never throws, so the page still renders fine — just
+ * without the stats badge — if the GitHub API is slow or unreachable.
+ */
+const projectsHandle = async (req, res) => {
+  const projects = content.getProjects();
+  const stats = await getRepoStatsBatch(projects.map((p) => p.repo));
+  const withStats = projects.map((p) => ({ ...p, stats: stats[p.repo] || null }));
+  res.render("projects", { projects: withStats });
+};
 
 /**
  * Renders the Gallery page with photo/video data from JSON and the
