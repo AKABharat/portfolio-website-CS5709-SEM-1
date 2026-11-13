@@ -7,6 +7,7 @@ const MongoStore = require("connect-mongo");
 const pageRoutes = require("./routes/pages");
 const authRoutes = require("./routes/auth");
 const blogRoutes = require("./routes/blog");
+const apiRoutes = require("./routes/api");
 const { attachCsrfToken } = require("./middleware/csrf");
 
 /**
@@ -50,6 +51,7 @@ app.use(attachCsrfToken);
 app.use("/", pageRoutes);
 app.use("/", authRoutes);
 app.use("/", blogRoutes);
+app.use("/api", apiRoutes);
 
 // 404 catch-all
 app.use((_req, res) => {

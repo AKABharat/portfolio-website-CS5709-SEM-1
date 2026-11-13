@@ -35,6 +35,8 @@ module.exports = [
         fetch: "readonly",
         console: "readonly",
         setTimeout: "readonly",
+        clearTimeout: "readonly",
+        URLSearchParams: "readonly",
       },
     },
   },
