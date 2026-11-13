@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { requireLogin } = require("../middleware/auth");
+const { requireLogin, requireOwner } = require("../middleware/auth");
+const { verifyCsrfToken } = require("../middleware/csrf");
+const { blogValidation } = require("../middleware/validators");
 
 const {
   blogListHandle,
@@ -10,8 +12,8 @@ const {
 } = require("../controllers/blog_controller");
 
 router.get("/blog", blogListHandle);
-router.get("/blog/new", requireLogin, blogCreatePageHandle);
-router.post("/blog/new", requireLogin, blogCreateHandle);
+router.get("/blog/new", requireLogin, requireOwner, blogCreatePageHandle);
+router.post("/blog/new", requireLogin, requireOwner, verifyCsrfToken, ...blogValidation, blogCreateHandle);
 router.get("/blog/:id", blogDetailHandle);
 
 module.exports = router;

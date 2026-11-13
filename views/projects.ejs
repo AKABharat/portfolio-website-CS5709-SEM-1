@@ -5,14 +5,8 @@
 }) %>
 
 <%
+  // projects comes from data/projects.json via page_controller.js
   // tone = gradient used for the card banner
-  const projects = [
-    {"title":"RFM Analysis Dashboard","icon":"📊","tone":"project-indigo","url":"https://github.com/AKABharat/E-Commerce-Customer-Segmentation-using-RFM-Analysis","description":"E-commerce customer-based RFM (Recency, Frequency, Monetary) analysis with an interactive dashboard built in Power BI. Performed ETL on raw data to identify valuable and at-risk customers.","tags":["Python","Pandas","Excel","Power BI"]},
-    {"title":"Real Estate Management","icon":"🏠","tone":"project-green","url":"https://github.com/AKABharat/Real-Estate-Management-System","description":"A Salesforce-based web application for managing and searching real estate properties — property search, user login/signup, email notifications, user dashboard, and property uploads.","tags":["Salesforce","LWC","Apex","SOQL"]},
-    {"title":"GetWeather","icon":"⛅","tone":"project-blue","url":"https://github.com/AKABharat/GetWeather","description":"A weather search website that displays real-time weather based on city input, pulling live data from a public weather API.","tags":["HTML5","CSS","JavaScript","Weather API"]},
-    {"title":"SnapQuest","icon":"📸","tone":"project-rose","url":"https://github.com/AKABharat/SnapQuest","description":"An image search website that allows users to search and dynamically view images based on input, powered by the Unsplash API.","tags":["JavaScript","HTML","CSS","Unsplash API"]}
-  ];
-
   const gradients = {
     'project-indigo': 'bg-gradient-to-br from-indigo-500 to-purple-700',
     'project-green': 'bg-gradient-to-br from-emerald-500 to-teal-600',

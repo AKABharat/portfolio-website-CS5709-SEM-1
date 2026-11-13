@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Software Engineer",
+    "company": "Aranya Consultancy — Gurugram, Haryana",
+    "period": "02/2025 - 06/2026",
+    "bullets": [
+      "Software analysis & consultancy, contributing to data analytics projects",
+      "Exploring and analyzing large datasets using Python and SQL",
+      "Transforming raw data into business intelligence dashboards for data-driven decisions",
+      "Writing SQL functions, procedures, views, indexes, and subqueries",
+      "Performed ETL operations and built interactive dashboards in Power BI"
+    ]
+  },
+  {
+    "title": "Associate Software Engineer",
+    "company": "Briskminds Software Solutions — Jaipur, Rajasthan",
+    "period": "01/2024 - 02/2025",
+    "bullets": [
+      "Salesforce Admin & Developer — Apex, Lightning Web Components, Aura Components, Visualforce",
+      "Contributed to internal and client-facing projects across the Salesforce ecosystem",
+      "Developed Retail Application features including product catalog and payment page"
+    ]
+  },
+  {
+    "title": "Frontend Web Developer Intern",
+    "company": "IBM SkillsBuild Platform",
+    "period": "06/2023 - 07/2023",
+    "bullets": [
+      "Trained in front-end technologies — HTML, CSS, JavaScript",
+      "Built an Amazon website UI clone and submitted it on time"
+    ]
+  }
+]

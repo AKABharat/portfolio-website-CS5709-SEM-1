@@ -1,0 +1,9 @@
+[
+  { "title": "Claude Code 101", "issuer": "Anthropic", "issued": "Apr 2026", "credentialId": "ju8pr66rnkf7" },
+  { "title": "Data Cloud Consultant", "issuer": "Salesforce", "issued": "Jan 2025", "credentialId": "5612540" },
+  { "title": "AI Specialist", "issuer": "Salesforce", "issued": "Oct 2024", "credentialId": "5006252" },
+  { "title": "AI Associate", "issuer": "Salesforce", "issued": "Oct 2024", "credentialId": "5005965" },
+  { "title": "Front End Development", "issuer": "IBM", "issued": "Jul 2023", "credentialId": "STU6461fbca16c2e1684143050" },
+  { "title": "Certificate for Completion of Python 3 Training", "issuer": "Indian Institute of Technology, Bombay", "issued": "May 2023", "credentialId": "3022511XIL" },
+  { "title": "Certificate for Completion of C++ Training", "issuer": "Indian Institute of Technology, Bombay", "issued": "Jan 2022", "credentialId": "30225118R1" }
+]

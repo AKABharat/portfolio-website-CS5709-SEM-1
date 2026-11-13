@@ -5,26 +5,7 @@
 }) %>
 
 <%
-  // [label, value, optional link]
-  const info = [
-    ['Email', 'bharatcode20@gmail.com', 'mailto:bharatcode20@gmail.com'],
-    ['Location', 'Limerick, Ireland'],
-    ['GitHub', 'github.com/AKABharat', 'https://github.com/AKABharat'],
-    ['LinkedIn', 'linkedin.com/in/bharatdoodi', 'https://linkedin.com/in/bharatdoodi'],
-    ['Languages', 'English, Hindi']
-  ];
-
-  const hobbies = ['🚗 Car Sketching', '🎨 Creative Arts', '🎧 Tech Podcasts'];
-
-  const skillGroups = [
-    {"title":"💻 Languages","skills":["C","C++","Python","JavaScript","SQL","Apex"]},
-    {"title":"🌐 Web Development","skills":["HTML5","CSS3","Node.js","Express.js","EJS","React","REST API"]},
-    {"title":"🗄️ Databases","skills":["MySQL","MongoDB"]},
-    {"title":"☁️ Salesforce","skills":["Salesforce","SF Admin","Apex Dev"]},
-    {"title":"📊 Data & Analysis","skills":["Pandas","NumPy","Matplotlib","Seaborn","Power BI","Excel"]},
-    {"title":"🧰 Tools & Concepts","skills":["Postman","VS Code","Git","OOP","DSA","Tkinter"]}
-  ];
-
+  // info, hobbies and skillGroups come from data/about.json via page_controller.js
   // Chip colours rotate through 6 tones inside each group
   const tones = [
     'bg-sky-700 text-white',
@@ -68,7 +49,7 @@
       <h2 class="text-4xl font-bold mb-6">Quick Info</h2>
 
       <div class="space-y-3 mb-10">
-        <% info.forEach(([label, value, href]) => { %>
+        <% info.forEach(({ label, value, href }) => { %>
           <div class="flex justify-between border-b-2 border-black pb-2 gap-5">
             <strong><%= label %></strong>
             <% if (href) { %>

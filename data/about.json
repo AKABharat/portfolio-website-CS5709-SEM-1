@@ -1,0 +1,18 @@
+{
+  "info": [
+    { "label": "Email", "value": "bharatcode20@gmail.com", "href": "mailto:bharatcode20@gmail.com" },
+    { "label": "Location", "value": "Limerick, Ireland" },
+    { "label": "GitHub", "value": "github.com/AKABharat", "href": "https://github.com/AKABharat" },
+    { "label": "LinkedIn", "value": "linkedin.com/in/bharatdoodi", "href": "https://linkedin.com/in/bharatdoodi" },
+    { "label": "Languages", "value": "English, Hindi" }
+  ],
+  "hobbies": ["🚗 Car Sketching", "🎨 Creative Arts", "🎧 Tech Podcasts"],
+  "skillGroups": [
+    { "title": "💻 Languages", "skills": ["C", "C++", "Python", "JavaScript", "SQL", "Apex"] },
+    { "title": "🌐 Web Development", "skills": ["HTML5", "CSS3", "Node.js", "Express.js", "EJS", "React", "REST API"] },
+    { "title": "🗄️ Databases", "skills": ["MySQL", "MongoDB"] },
+    { "title": "☁️ Salesforce", "skills": ["Salesforce", "SF Admin", "Apex Dev"] },
+    { "title": "📊 Data & Analysis", "skills": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Power BI", "Excel"] },
+    { "title": "🧰 Tools & Concepts", "skills": ["Postman", "VS Code", "Git", "OOP", "DSA", "Tkinter"] }
+  ]
+}

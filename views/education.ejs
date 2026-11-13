@@ -5,22 +5,8 @@
 }) %>
 
 <%
-  const education = [
-    {"title":"Bachelor of Technology","school":"Swami Keshvanand Institute of Technology (SKIT), Jaipur","subject":"Computer Science — Artificial Intelligence","period":"2020 - 2024","grade":"CGPA 9.54"},
-    {"title":"Senior Secondary (12th)","school":"Saint Verona Senior Secondary School, Jaipur","subject":"Physics, Chemistry, Mathematics — RBSE Board","period":"2020"},
-    {"title":"Secondary (10th)","school":"Maheshwari Public School, Jaipur","subject":"CBSE Board","period":"2018"}
-  ];
-
-  // [title, issuer, issued, credential id]
-  const certifications = [
-    ["Claude Code 101","Anthropic","Apr 2026","ju8pr66rnkf7"],
-    ["Data Cloud Consultant","Salesforce","Jan 2025","5612540"],
-    ["AI Specialist","Salesforce","Oct 2024","5006252"],
-    ["AI Associate","Salesforce","Oct 2024","5005965"],
-    ["Front End Development","IBM","Jul 2023","STU6461fbca16c2e1684143050"],
-    ["Certificate for Completion of Python 3 Training","Indian Institute of Technology, Bombay","May 2023","3022511XIL"],
-    ["Certificate for Completion of C++ Training","Indian Institute of Technology, Bombay","Jan 2022","30225118R1"]
-  ];
+  // education and certifications come from data/education.json and
+  // data/certifications.json via page_controller.js
 %>
 
 <div class="w-full py-12 sm:py-20">
@@ -57,7 +43,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <% certifications.forEach(([title, issuer, issued, id]) => { %>
+      <% certifications.forEach(({ title, issuer, issued, credentialId }) => { %>
         <article class="border-2 border-black rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000] transition-all duration-200">
           <div>
             <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
@@ -66,7 +52,7 @@
             </div>
             <h3 class="text-2xl font-bold leading-snug"><%= title %></h3>
           </div>
-          <div class="mt-5 pt-4 border-t border-gray-300 text-sm text-gray-600 break-all">ID: <%= id %></div>
+          <div class="mt-5 pt-4 border-t border-gray-300 text-sm text-gray-600 break-all">ID: <%= credentialId %></div>
         </article>
       <% }) %>
     </div>
