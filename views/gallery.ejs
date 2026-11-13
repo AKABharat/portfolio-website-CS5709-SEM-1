@@ -38,6 +38,15 @@
   <!-- PHOTOS -->
   <div id="photos-panel" class="<%= initialTab === 'Photos' ? '' : 'hidden' %>">
 
+    <!-- Text search: filters the already-loaded photos client-side (no API
+         call needed for a dataset this small — see the gallery search note
+         in the README). Combines with the category buttons below. -->
+    <div class="flex justify-center mb-6">
+      <input type="search" id="photo-search" placeholder="Search photos by caption or category..."
+        aria-label="Search photos" autocomplete="off"
+        class="w-full max-w-xl border-2 border-black rounded-xl px-4 py-3 focus-visible:outline-none">
+    </div>
+
     <div class="flex justify-center gap-3 flex-wrap mb-10">
       <% filters.forEach(f => { %>
         <button type="button" data-filter="<%= f %>" aria-pressed="<%= f === 'All' %>"
@@ -54,6 +63,8 @@
         </button>
       <% }) %>
     </div>
+
+    <p id="photos-empty" class="hidden text-gray-500 text-xl text-center mt-10">No photos match your search.</p>
   </div>
 
   <!-- VIDEOS -->
@@ -152,9 +163,29 @@
     document.querySelectorAll('.video-item').forEach(b =>
       b.addEventListener('click', () => loadVideo(Number(b.dataset.video))));
 
-    /* ---------- Photo filter ---------- */
+    /* ---------- Photo search + category filter (combined) ---------- */
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.photo-card');
+    const searchInput = document.getElementById('photo-search');
+    const emptyMsg = document.getElementById('photos-empty');
+    let activeCategory = 'All';
+
+    function applyPhotoFilters() {
+      const term = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach((card, i) => {
+        const p = photos[i];
+        const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
+        const matchesSearch = !term || p.label.toLowerCase().includes(term) ||
+          p.caption.toLowerCase().includes(term) || p.category.toLowerCase().includes(term);
+        const visible = matchesCategory && matchesSearch;
+        card.classList.toggle('hidden', !visible);
+        if (visible) visibleCount++;
+      });
+
+      emptyMsg.classList.toggle('hidden', visibleCount > 0);
+    }
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -163,9 +194,15 @@
           b.setAttribute('aria-pressed', String(on));
           setActive(b, on);
         });
-        const f = btn.dataset.filter;
-        cards.forEach(c => c.classList.toggle('hidden', !(f === 'All' || c.dataset.category === f)));
+        activeCategory = btn.dataset.filter;
+        applyPhotoFilters();
       });
+    });
+
+    let photoSearchDebounce;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(photoSearchDebounce);
+      photoSearchDebounce = setTimeout(applyPhotoFilters, 200);
     });
 
     /* ---------- Lightbox ---------- */

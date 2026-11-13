@@ -20,8 +20,9 @@ A server-rendered digital portfolio built for **CS5709 – Software Engineering 
 9. [Environment Variables](#environment-variables)
 10. [Deployment](#deployment)
 11. [Continuous Integration / Continuous Deployment (CI/CD)](#continuous-integration--continuous-deployment-cicd)
-12. [Instant Messaging](#instant-messaging)
-13. [Evaluation and Future Enhancements](#evaluation-and-future-enhancements)
+12. [Interactivity: Search, Filter and State Management](#interactivity-search-filter-and-state-management)
+13. [Instant Messaging](#instant-messaging)
+14. [Evaluation and Future Enhancements](#evaluation-and-future-enhancements)
 
 ## Assessment Coverage
 
@@ -33,6 +34,7 @@ A server-rendered digital portfolio built for **CS5709 – Software Engineering 
 | Development – Iteration 2 | Tailwind CSS, responsive layout, interactive gallery, Express routing, 404 page, authentication |
 | Development – Iteration 3 | JSON-backed content layer, MVC refactor (routes/controllers/services), CSRF, rate limiting, input validation, persistent sessions |
 | Development – Iteration 4 | GitHub Actions CI (lint + automated tests) on every pull request, documented in [CI/CD](#continuous-integration--continuous-deployment-cicd) |
+| Development – Iteration 5 | Live search/filter on Projects, Blog and Gallery; a framework-free state-management store; documented in [Interactivity](#interactivity-search-filter-and-state-management) |
 | Evaluation | Testing, critical review and prioritised enhancements in `Assessment1_Report.md` section 5 |
 
 ## Features
@@ -260,6 +262,23 @@ Run the same checks locally before pushing:
 npm run lint
 npm test
 ```
+
+## Interactivity: Search, Filter and State Management
+
+**Live search/filter, backed by a small read-only API** ([`routes/api.js`](./routes/api.js), [`controllers/api_controller.js`](./controllers/api_controller.js)):
+
+| Endpoint | Used by | Notes |
+|---|---|---|
+| `GET /api/projects?search=&tag=` | Projects page search box + tag chips | Filters `data/projects.json` via `content_service.searchProjects` |
+| `GET /api/blog?search=` | Blog page search box | Queries MongoDB directly (case-insensitive regex on title/content) |
+
+Each page's search box is **progressive enhancement**: the full list is still rendered server-side on first load (works with JavaScript disabled, and is crawlable by search engines), and `public/js/projects-search.js` / `public/js/blog-search.js` replace the list with live results from the API above as you type, debounced by 250ms so it doesn't fire a request on every keystroke.
+
+**Gallery's search stays client-side on purpose.** With only a handful of photos already embedded in the rendered page, adding a network round-trip for every keystroke would be pure overhead with no benefit — so `views/gallery.ejs` filters the data it already has in memory, combined with the existing category buttons. This is a deliberate trade-off, not an oversight: fetch an API when the dataset is large/dynamic (projects, blog), filter in-memory when it's small and static (gallery).
+
+**Lazy loading:** gallery photos use the native `loading="lazy"` attribute (`views/gallery.ejs`), deferring offscreen images until the user scrolls near them. Above-the-fold images (header icons) are intentionally left eager, since lazy-loading something already visible on load only adds delay.
+
+**State management** (`public/js/store.js`): a ~25-line framework-free observable store — `get()`/`set()`/`subscribe()` backed by `localStorage` — standing in for what a React app would use Redux/Zustand/Context for. `public/js/theme.js` uses it to power the 🌓 dark/light toggle in the header: the chosen theme persists across page navigation and browser restarts, and the dark-theme CSS (in `views/partials/header.ejs`) is written as broad overrides keyed off the Tailwind utility classes already used everywhere (`.border-black`, `.text-gray-600`, etc.), so the whole site re-themes without editing every view individually.
 
 ## Instant Messaging
 

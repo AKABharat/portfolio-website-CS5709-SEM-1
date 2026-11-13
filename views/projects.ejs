@@ -13,13 +13,32 @@
     'project-blue': 'bg-gradient-to-br from-sky-400 to-blue-600',
     'project-rose': 'bg-gradient-to-br from-rose-400 to-pink-500'
   };
+  const allTags = [...new Set(projects.flatMap(p => p.tags))].sort();
+  const chipOn = 'bg-black text-white';
+  const chipOff = 'bg-gray-200 text-gray-700';
 %>
 
 <div class="w-full py-12 sm:py-20">
 
-  <h1 class="page-title mb-16">Projects 🛠️</h1>
+  <h1 class="page-title mb-10">Projects 🛠️</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+  <!-- Search + tag filter: enhances the server-rendered list below via
+       GET /api/projects (see public/js/projects-search.js). Works without
+       JS too, since all projects are already rendered server-side. -->
+  <div class="mb-12 flex flex-col gap-4">
+    <input type="search" id="project-search" placeholder="Search projects by name, description or tag..."
+      aria-label="Search projects" autocomplete="off"
+      class="w-full max-w-xl border-2 border-black rounded-xl px-4 py-3 focus-visible:outline-none">
+
+    <div class="flex flex-wrap gap-2" id="project-tag-filters">
+      <button type="button" data-tag="" aria-pressed="true" class="tag-filter-btn <%= chipOn %> text-sm px-4 py-2 rounded-full font-medium cursor-pointer">All</button>
+      <% allTags.forEach(t => { %>
+        <button type="button" data-tag="<%= t %>" aria-pressed="false" class="tag-filter-btn <%= chipOff %> text-sm px-4 py-2 rounded-full font-medium cursor-pointer"><%= t %></button>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10" id="projects-grid">
     <% projects.forEach(p => { %>
       <article class="border-2 border-black rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform">
 
@@ -45,6 +64,10 @@
     <% }) %>
   </div>
 
+  <p id="projects-empty" class="hidden text-gray-500 text-xl mt-10">No projects match your search.</p>
+
 </div>
+
+<script src="/js/projects-search.js" defer></script>
 
 <%- include('partials/footer') %>
