@@ -21,8 +21,9 @@ A server-rendered digital portfolio built for **CS5709 – Software Engineering 
 10. [Deployment](#deployment)
 11. [Continuous Integration / Continuous Deployment (CI/CD)](#continuous-integration--continuous-deployment-cicd)
 12. [Interactivity: Search, Filter and State Management](#interactivity-search-filter-and-state-management)
-13. [Instant Messaging](#instant-messaging)
-14. [Evaluation and Future Enhancements](#evaluation-and-future-enhancements)
+13. [Innovation](#innovation)
+14. [Instant Messaging](#instant-messaging)
+15. [Evaluation and Future Enhancements](#evaluation-and-future-enhancements)
 
 ## Assessment Coverage
 
@@ -35,6 +36,7 @@ A server-rendered digital portfolio built for **CS5709 – Software Engineering 
 | Development – Iteration 3 | JSON-backed content layer, MVC refactor (routes/controllers/services), CSRF, rate limiting, input validation, persistent sessions |
 | Development – Iteration 4 | GitHub Actions CI (lint + automated tests) on every pull request, documented in [CI/CD](#continuous-integration--continuous-deployment-cicd) |
 | Development – Iteration 5 | Live search/filter on Projects, Blog and Gallery; a framework-free state-management store; documented in [Interactivity](#interactivity-search-filter-and-state-management) |
+| Innovation | Live GitHub repo stats and a site-wide Ctrl+K command-palette search, documented in [Innovation](#innovation) |
 | Evaluation | Testing, critical review and prioritised enhancements in `Assessment1_Report.md` section 5 |
 
 ## Features
@@ -279,6 +281,20 @@ Each page's search box is **progressive enhancement**: the full list is still re
 **Lazy loading:** gallery photos use the native `loading="lazy"` attribute (`views/gallery.ejs`), deferring offscreen images until the user scrolls near them. Above-the-fold images (header icons) are intentionally left eager, since lazy-loading something already visible on load only adds delay.
 
 **State management** (`public/js/store.js`): a ~25-line framework-free observable store — `get()`/`set()`/`subscribe()` backed by `localStorage` — standing in for what a React app would use Redux/Zustand/Context for. `public/js/theme.js` uses it to power the 🌓 dark/light toggle in the header: the chosen theme persists across page navigation and browser restarts, and the dark-theme CSS (in `views/partials/header.ejs`) is written as broad overrides keyed off the Tailwind utility classes already used everywhere (`.border-black`, `.text-gray-600`, etc.), so the whole site re-themes without editing every view individually.
+
+## Innovation
+
+Two features that go beyond what was covered in class, both live on the Projects page and in the global header.
+
+**1. Live GitHub repository stats** ([`services/github_service.js`](./services/github_service.js)): the Projects page calls the public GitHub REST API (`GET https://api.github.com/repos/:owner/:repo`) for every project's repo, in parallel, on each request, and shows real ⭐ star / 🍴 fork counts rather than numbers typed into a JSON file that go stale. Two engineering decisions worth calling out in review:
+- **Caching (10 minutes, in-memory):** GitHub's unauthenticated API allows only 60 requests/hour *per IP* — shared across every visitor hitting this one Render instance. Without a cache, a handful of page loads in quick succession would exhaust it for everyone.
+- **Fails silently, never fails the page:** if the API is slow, rate-limited, or a repo is unreachable, `getRepoStatsBatch` resolves to `null` for that repo instead of throwing — the project card just renders without the stats badge. A third-party API hiccup should never be able to take down your own page.
+- Deliberately **not** called from `GET /api/projects` (the live-search endpoint from the Interactivity section above) — doing so would multiply GitHub API calls on every keystroke. The stats badge only appears on the initial server-rendered page load.
+- Also disabled entirely when `NODE_ENV=test`, so the automated test suite never depends on GitHub's availability.
+
+**2. Site-wide Ctrl+K search** ([`public/js/site-search.js`](./public/js/site-search.js), `GET /api/search`): the same quick-open pattern as VS Code, GitHub itself, or Slack. Press **Ctrl+K** (or **Cmd+K** on Mac) anywhere on the site, or click the Search button in the header, to open a command palette that queries pages, projects and blog posts in one request and lets you jump straight to a result with the mouse or the keyboard (↑/↓ to move, Enter to go, Esc to close).
+- One endpoint, three data sources merged into a single ranked list: a small hardcoded list of static pages, `content_service.searchProjects` for projects, and a MongoDB regex query for blog posts.
+- **Design note from testing this feature by hand:** project results originally linked straight to the project's external GitHub repo (reusing the same URL as the "Code ↗" button) — which meant searching *this* site could silently navigate you *off* this site. Fixed by linking project results to `/projects?search=<title>` instead; the Projects page reads that query parameter on load and immediately runs the same live-search filter from the Interactivity section, landing you on the matching card without leaving the portfolio. Page and blog results always stayed in-site, since they link to this site's own routes.
 
 ## Instant Messaging
 

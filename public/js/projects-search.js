@@ -3,6 +3,12 @@
  * the full project list is already server-rendered (works with JS off);
  * this script replaces that grid's contents with results fetched from
  * GET /api/projects whenever the search box or a tag chip changes.
+ *
+ * Note: /api/projects intentionally does not include the live GitHub
+ * stats badge (see services/github_service.js) — fetching those per
+ * keystroke would multiply calls to GitHub's rate-limited API far faster
+ * than a normal page load would. The badge only appears on the initial
+ * server-rendered page; search results render without it.
  */
 (function () {
   const GRADIENTS = {
@@ -75,4 +81,12 @@
       runSearch();
     });
   });
+
+  // Arriving from the site-wide Ctrl+K search (/projects?search=...): pre-fill
+  // and run that search immediately instead of showing the full unfiltered list.
+  const initialSearch = new URLSearchParams(window.location.search).get("search");
+  if (initialSearch) {
+    searchInput.value = initialSearch;
+    runSearch();
+  }
 })();
