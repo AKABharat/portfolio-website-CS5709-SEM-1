@@ -30,6 +30,12 @@
   <!-- Tailwind (keep whichever CDN script you already use) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- GSAP: entrance animations for page headings and the home page hero
+       (see public/js/gsap-init.js). Deferred since it only needs to run
+       once the DOM is ready, not before first paint like the theme script. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="/js/gsap-init.js" defer></script>
+
   <!-- State management: tiny localStorage-backed store + the script that
        applies it. Loaded in <head>, before first paint, so switching pages
        doesn't flash the wrong theme. See public/js/store.js for the pattern. -->
