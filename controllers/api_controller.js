@@ -2,6 +2,17 @@ const content = require("../services/content_service");
 const blogModel = require("../models/blog");
 
 /**
+ * Escapes regex metacharacters so user-typed search text is matched
+ * literally instead of being interpreted as a pattern. Without this, a
+ * single unmatched bracket or parenthesis (e.g. searching for "C++ (")
+ * throws a MongoDB error instead of returning "no results", and a
+ * crafted pattern could make the query pathologically slow (ReDoS).
+ * @param {string} str - Raw user input destined for a $regex filter.
+ * @returns {string} The same text with regex-special characters escaped.
+ */
+const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/**
  * GET /api/projects?search=&tag=
  * Returns the projects list, optionally filtered by free-text search
  * and/or an exact tag match. Powers the live search/filter UI on the
@@ -21,7 +32,7 @@ const listProjects = (req, res) => {
 const searchBlogPosts = async (req, res) => {
   const search = String(req.query.search || "").trim();
   const filter = search
-    ? { $or: [{ title: { $regex: search, $options: "i" } }, { content: { $regex: search, $options: "i" } }] }
+    ? { $or: [{ title: { $regex: escapeRegex(search), $options: "i" } }, { content: { $regex: escapeRegex(search), $options: "i" } }] }
     : {};
 
   const posts = await blogModel.find(filter).sort({ createdAt: -1 }).select("title authorName content createdAt");
@@ -69,8 +80,9 @@ const siteSearch = async (req, res) => {
     .searchProjects({ search: q })
     .map((p) => ({ type: "project", title: p.title, url: `/projects?search=${encodeURIComponent(p.title)}`, desc: p.description }));
 
+  const safeQ = escapeRegex(q);
   const blogMatches = await blogModel
-    .find({ $or: [{ title: { $regex: q, $options: "i" } }, { content: { $regex: q, $options: "i" } }] })
+    .find({ $or: [{ title: { $regex: safeQ, $options: "i" } }, { content: { $regex: safeQ, $options: "i" } }] })
     .limit(5)
     .select("title content");
 
@@ -84,4 +96,4 @@ const siteSearch = async (req, res) => {
   res.json([...pageMatches, ...projectMatches, ...blogResults].slice(0, 12));
 };
 
-module.exports = { listProjects, searchBlogPosts, siteSearch };
+module.exports = { listProjects, searchBlogPosts, siteSearch, escapeRegex };
