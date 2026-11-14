@@ -43,7 +43,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <% certifications.forEach(({ title, issuer, issued, credentialId }) => { %>
+      <% certifications.forEach(({ title, issuer, issued, credentialId, verifyUrl }) => { %>
         <article class="border-2 border-black rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000] transition-all duration-200">
           <div>
             <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
@@ -52,7 +52,12 @@
             </div>
             <h3 class="text-2xl font-bold leading-snug"><%= title %></h3>
           </div>
-          <div class="mt-5 pt-4 border-t border-gray-300 text-sm text-gray-600 break-all">ID: <%= credentialId %></div>
+          <div class="mt-5 pt-4 border-t border-gray-300 text-sm text-gray-600 flex flex-wrap justify-between items-center gap-2">
+            <span class="break-all">ID: <%= credentialId %></span>
+            <% if (verifyUrl) { %>
+              <a href="<%= verifyUrl %>" target="_blank" rel="noopener noreferrer" class="font-bold text-black underline whitespace-nowrap">Verify ↗</a>
+            <% } %>
+          </div>
         </article>
       <% }) %>
     </div>

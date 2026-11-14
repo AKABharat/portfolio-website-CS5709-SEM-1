@@ -1,9 +1,9 @@
 [
-  { "title": "Claude Code 101", "issuer": "Anthropic", "issued": "Apr 2026", "credentialId": "ju8pr66rnkf7" },
-  { "title": "Data Cloud Consultant", "issuer": "Salesforce", "issued": "Jan 2025", "credentialId": "5612540" },
-  { "title": "AI Specialist", "issuer": "Salesforce", "issued": "Oct 2024", "credentialId": "5006252" },
-  { "title": "AI Associate", "issuer": "Salesforce", "issued": "Oct 2024", "credentialId": "5005965" },
-  { "title": "Front End Development", "issuer": "IBM", "issued": "Jul 2023", "credentialId": "STU6461fbca16c2e1684143050" },
-  { "title": "Certificate for Completion of Python 3 Training", "issuer": "Indian Institute of Technology, Bombay", "issued": "May 2023", "credentialId": "3022511XIL" },
-  { "title": "Certificate for Completion of C++ Training", "issuer": "Indian Institute of Technology, Bombay", "issued": "Jan 2022", "credentialId": "30225118R1" }
+  { "title": "Claude Code 101", "issuer": "Anthropic", "issued": "Apr 2026", "credentialId": "ju8pr66rnkf7", "verifyUrl": "https://drive.google.com/file/d/1GTCD0q-cUHrSRqg5JTkCIL4MZ-e_C_Lw/view?usp=sharing" },
+  { "title": "Data Cloud Consultant", "issuer": "Salesforce", "issued": "Jan 2025", "credentialId": "5612540", "verifyUrl": "https://drive.google.com/file/d/1iqBTkauzT7B7FAFG72cFo9wiZjXCIanf/view?usp=sharing" },
+  { "title": "AI Specialist", "issuer": "Salesforce", "issued": "Oct 2024", "credentialId": "5006252", "verifyUrl": "https://drive.google.com/file/d/1XXtPk039fjlhIqqR7InS98H3gLDsWCvQ/view?usp=sharing" },
+  { "title": "AI Associate", "issuer": "Salesforce", "issued": "Oct 2024", "credentialId": "5005965", "verifyUrl": "https://drive.google.com/file/d/1dfhznKss8M6zNoGnnWs31VTY9AVWxVts/view?usp=sharing" },
+  { "title": "Front End Development", "issuer": "IBM", "issued": "Jul 2023", "credentialId": "STU6461fbca16c2e1684143050", "verifyUrl": "https://drive.google.com/file/d/1F2UIhJh7sn6kn9iq3F0I1Gq0ArwwYmx-/view?usp=sharing" },
+  { "title": "Certificate for Completion of Python 3 Training", "issuer": "Indian Institute of Technology, Bombay", "issued": "May 2023", "credentialId": "3022511XIL", "verifyUrl": "https://drive.google.com/file/d/14yL2nWo3aYTWJR8ZMbJPSI2rhbRl5ATf/view?usp=sharing" },
+  { "title": "Certificate for Completion of C++ Training", "issuer": "Indian Institute of Technology, Bombay", "issued": "Jan 2022", "credentialId": "30225118R1", "verifyUrl": "https://drive.google.com/file/d/1acRWcGy9-a_fRMNx3NpvxQ9aK2kwwcG_/view?usp=sharing" }
 ]
