@@ -1,3 +1,4 @@
+/** Blog post schema: title/content authored by a User, read by blog_controller and api_controller. Depends on mongoose. */
 const mongoose = require("mongoose");
 
 const blogModel = mongoose.Schema(
