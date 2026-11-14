@@ -37,6 +37,7 @@ module.exports = [
         setTimeout: "readonly",
         clearTimeout: "readonly",
         URLSearchParams: "readonly",
+        gsap: "readonly",
       },
     },
   },
